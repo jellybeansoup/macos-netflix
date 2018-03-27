@@ -15,7 +15,23 @@
 		A139AFA7205F7949008680F4 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AFA6205F7949008680F4 /* WindowController.swift */; };
 		A139AFA9205FCBFA008680F4 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AFA8205FCBFA008680F4 /* TitleView.swift */; };
 		A139AFAB205FD565008680F4 /* Customization.js in Resources */ = {isa = PBXBuildFile; fileRef = A139AFAA205FD565008680F4 /* Customization.js */; };
+		A162DCCC206A4A6000C053D1 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A162DCCD206A4A6000C053D1 /* Sparkle.framework */; };
+		A162DCCF206A57AC00C053D1 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A162DCCD206A4A6000C053D1 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A162DCCE206A578E00C053D1 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A162DCCF206A57AC00C053D1 /* Sparkle.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -29,6 +45,7 @@
 		A139AFA6205F7949008680F4 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		A139AFA8205FCBFA008680F4 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		A139AFAA205FD565008680F4 /* Customization.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Customization.js; sourceTree = "<group>"; };
+		A162DCCD206A4A6000C053D1 /* Sparkle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sparkle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A162DCCC206A4A6000C053D1 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				A139AF95205F775A008680F4 /* Netflix */,
+				A162DCCB206A4A2F00C053D1 /* Frameworks */,
 				A139AF94205F775A008680F4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +94,14 @@
 			path = Netflix;
 			sourceTree = "<group>";
 		};
+		A162DCCB206A4A2F00C053D1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A162DCCD206A4A6000C053D1 /* Sparkle.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,6 +110,7 @@
 			buildConfigurationList = A139AFA3205F775A008680F4 /* Build configuration list for PBXNativeTarget "Netflix" */;
 			buildPhases = (
 				A139AF8F205F775A008680F4 /* Sources */,
+				A162DCCE206A578E00C053D1 /* Copy Frameworks */,
 				A139AF90205F775A008680F4 /* Frameworks */,
 				A139AF91205F775A008680F4 /* Resources */,
 			);
@@ -108,6 +136,11 @@
 					A139AF92205F775A008680F4 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -284,7 +317,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SGWXH8G2WP;
 				INFOPLIST_FILE = Netflix/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jellystyle.Netflix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -300,7 +333,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SGWXH8G2WP;
 				INFOPLIST_FILE = Netflix/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jellystyle.Netflix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

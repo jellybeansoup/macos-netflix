@@ -28,5 +28,7 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUFeedURL</key>
+	<string>https://jellystyle.com/resources/macOS/Netflix.xml</string>
 </dict>
 </plist>
