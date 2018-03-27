@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <plugIn identifier="com.apple.WebKit2IBPlugin" version="13771"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -685,7 +686,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="Netflix" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Netflix" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -724,24 +725,26 @@
                                     <constraint firstAttribute="height" constant="22" id="fVd-8N-RfB"/>
                                 </constraints>
                             </visualEffectView>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Fqp-ww-d86">
-                                <rect key="frame" x="232" y="127" width="16" height="16"/>
-                            </progressIndicator>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="yun-A8-yUA" customClass="ActivityIndicator" customModule="Netflix" customModuleProvider="target">
+                                <rect key="frame" x="223" y="126" width="34" height="18"/>
+                            </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="yun-A8-yUA" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" multiplier="0.07" id="25Q-W6-rYW"/>
                             <constraint firstAttribute="trailing" secondItem="QKm-LV-Asv" secondAttribute="trailing" id="7UH-v1-052"/>
+                            <constraint firstItem="yun-A8-yUA" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="9QB-W7-hFq"/>
                             <constraint firstItem="z9V-fC-6M6" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="CNQ-Pt-CDI"/>
+                            <constraint firstItem="yun-A8-yUA" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" multiplier="0.07" id="J9Z-PQ-JFX"/>
                             <constraint firstItem="z9V-fC-6M6" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="JHL-bB-XU6"/>
                             <constraint firstItem="QKm-LV-Asv" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="QAR-wj-b6v"/>
                             <constraint firstItem="QKm-LV-Asv" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Sf1-QA-1ca"/>
-                            <constraint firstItem="Fqp-ww-d86" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="WO6-ic-tFS"/>
+                            <constraint firstItem="yun-A8-yUA" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="ZH4-mR-tut"/>
                             <constraint firstAttribute="bottom" secondItem="QKm-LV-Asv" secondAttribute="bottom" id="fLE-E5-JDF"/>
                             <constraint firstAttribute="trailing" secondItem="z9V-fC-6M6" secondAttribute="trailing" id="nuc-Kc-GcC"/>
-                            <constraint firstItem="Fqp-ww-d86" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="zzJ-Hd-CuC"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="progressIndicator" destination="Fqp-ww-d86" id="QwN-F7-vCe"/>
+                        <outlet property="activityIndicator" destination="yun-A8-yUA" id="eP2-ZE-EhL"/>
                         <outlet property="titleView" destination="z9V-fC-6M6" id="zAL-bP-ieo"/>
                         <outlet property="webView" destination="QKm-LV-Asv" id="8c0-kI-E4o"/>
                     </connections>

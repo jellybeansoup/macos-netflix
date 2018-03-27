@@ -7,7 +7,7 @@ class ViewController: NSViewController {
 
 	@IBOutlet weak var titleView: TitleView?
 
-	@IBOutlet weak var progressIndicator: NSProgressIndicator?
+	@IBOutlet weak var activityIndicator: ActivityIndicator?
 
 	private var currentNavigation: WKNavigation?
 
@@ -15,14 +15,6 @@ class ViewController: NSViewController {
 		super.viewDidLoad()
 
 		view.layer?.backgroundColor = NSColor(deviceRed:0.078, green:0.078, blue:0.078, alpha:1).cgColor
-
-		if let lighten = CIFilter(name: "CIColorControls") {
-			lighten.setDefaults()
-			lighten.setValue(1, forKey: "inputBrightness")
-			progressIndicator?.contentFilters = [lighten]
-		}
-
-		progressIndicator?.isDisplayedWhenStopped = false
 
 		guard let webView = webView else {
 			return
@@ -78,11 +70,11 @@ extension ViewController: WKScriptMessageHandler {
 extension ViewController: WKNavigationDelegate {
 
 	func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-		progressIndicator?.startAnimation(self)
+		activityIndicator?.isHidden = !webView.isHidden
 	}
 
 	func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-		progressIndicator?.stopAnimation(self)
+		activityIndicator?.isHidden = true
 		webView.isHidden = false
 
 		if let scriptURL = Bundle.main.url(forResource: "Customization", withExtension: "js"), let script = try? String(contentsOf: scriptURL) {

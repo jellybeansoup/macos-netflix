@@ -1,8 +1,6 @@
 # Netflix wrapper for macOS
 
-A very simple—*non-working*—proof-of-concept app for a `WKWebView` based app to allow viewing Netflix outside the browser on macOS. The goal is to somewhat allow a picture-in-picture style browsing and watching experience. There's a bunch of similar apps on the Mac App Store, but this one is mine, and the idea is to keep it pretty lightweight (no majorly additive features).
-
-The app works pretty well overall, but doesn't currently play actual content (though trailers work just fine, presumably this is because of DRM), which probably makes it a non-starter. OH WELL AT LEAST WE LEARNED SOMETHING TODAY
+A very simple proof-of-concept app for a `WKWebView` based app to allow viewing Netflix outside the browser on macOS. The goal is to somewhat allow a picture-in-picture style browsing and watching experience. There's a bunch of similar apps on the Mac App Store, but this one is mine, and the idea is to keep it pretty lightweight (no majorly additive features).
 
 ## Released under the BSD License
 
