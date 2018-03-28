@@ -117,6 +117,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A139AFA3205F775A008680F4 /* Build configuration list for PBXNativeTarget "Netflix" */;
 			buildPhases = (
+				A11E73F1206B228600FEE183 /* SwiftLint */,
 				A11E73EF206B1F0700FEE183 /* Determine Build Number */,
 				A139AF8F205F775A008680F4 /* Sources */,
 				A162DCCE206A578E00C053D1 /* Copy Frameworks */,
@@ -213,6 +214,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# We don't want to gum up the repo with build number updates\nsh \"update-version.sh\" --build=1";
+		};
+		A11E73F1206B228600FEE183 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    cd .. && swiftlint # Run SwiftLint from the root directory, not just the one for this xcodeproj\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -14,7 +14,7 @@ class ViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		view.layer?.backgroundColor = NSColor(deviceRed:0.078, green:0.078, blue:0.078, alpha:1).cgColor
+		view.layer?.backgroundColor = NSColor(deviceRed: 0.078, green: 0.078, blue: 0.078, alpha: 1).cgColor
 
 		guard let webView = webView else {
 			return

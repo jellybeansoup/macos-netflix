@@ -26,11 +26,11 @@ class TitleView: NSVisualEffectView {
 	}
 
 	override func viewDidMoveToWindow() {
-		let becomeKey = NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: nil, queue: .main) { [weak self] notification in
+		let becomeKey = NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: nil, queue: .main) { [weak self] _ in
 			self?.updateVisibility()
 		}
 
-		let resignKey = NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: nil, queue: .main) { [weak self] notification in
+		let resignKey = NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: nil, queue: .main) { [weak self] _ in
 			self?.updateVisibility()
 		}
 
