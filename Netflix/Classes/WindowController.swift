@@ -21,6 +21,33 @@ class WindowController: NSWindowController, NSWindowDelegate {
 		didSetKeepInFront()
 	}
 
+	// MARK: Lock aspect ratio in videos
+
+	func update(aspectRatio: NSSize?) {
+		guard let window = window, let screen = window.screen else {
+			return
+		}
+
+		if let aspectRatio = aspectRatio {
+			guard window.contentAspectRatio != aspectRatio else {
+				return
+			}
+
+			window.contentAspectRatio = aspectRatio
+
+			let preferredCorner = window.preferredCorner(for: screen)
+			print(preferredCorner)
+
+			var frame = window.frame
+			frame.size.height = aspectRatio.height / aspectRatio.width * frame.size.width
+			frame.origin = frame.originForSnapping(to: preferredCorner, of: screen, with: snapInset)
+			window.setFrame(frame, display: true, animate: true)
+		}
+		else {
+			window.contentResizeIncrements = NSSize(width: 1, height: 1)
+		}
+	}
+
 	// MARK: Keep in front
 
 	static private let keepInFrontKey = "com.jellystyle.Netflix.WindowController.KeepInFront"

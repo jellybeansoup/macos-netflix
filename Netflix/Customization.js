@@ -14,7 +14,8 @@
 			hasSearch: window.jellystyle.hasSearch(),
 			controlsVisible: false,
 			overlayVisible: false,
-			playerClass: null
+			playerClass: null,
+			videoSize: null
 		};
 		
 		var pinningHeader = document.getElementsByClassName("pinning-header-container").item(0);
@@ -28,6 +29,11 @@
 			message.controlsVisible = player.className.match(/\bactive\b/) !== null;
   			message.overlayVisible = !message.controlsVisible && player.className.match(/\binactive\b/) === null;
 			message.playerClass = player.className;
+
+			var video = player.getElementsByTagName("video").item(0)
+			if (video !== null) {
+				message.videoSize = [video.videoWidth, video.videoHeight]; 
+			}
 
 			jellystyle.startObserving("player", player, { attributes: true, attributeFilter: ["class"] });
 		}

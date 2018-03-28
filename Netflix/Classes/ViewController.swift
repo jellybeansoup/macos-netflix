@@ -3,6 +3,10 @@ import WebKit
 
 class ViewController: NSViewController {
 
+	private weak var windowController: WindowController? {
+		return view.window?.windowController as? WindowController
+	}
+
 	@IBOutlet weak var webView: WKWebView?
 
 	@IBOutlet weak var titleView: TitleView?
@@ -74,6 +78,14 @@ extension ViewController: WKScriptMessageHandler {
 		displayingOverlay = (dictionary["overlayVisible"] as? NSNumber)?.boolValue ?? false
 		displayingHeader = (dictionary["hasHeader"] as? NSNumber)?.boolValue ?? false
 		canSearch = (dictionary["hasSearch"] as? NSNumber)?.boolValue ?? false
+
+		if let size = dictionary["videoSize"] as? [NSNumber] {
+			let aspectRatio = NSSize(width: size[0].doubleValue, height: size[1].doubleValue)
+			windowController?.update(aspectRatio: aspectRatio)
+		}
+		else {
+			windowController?.update(aspectRatio: nil)
+		}
 
 		titleView?.shouldHideWhenInactive = !(displayingControls || displayingHeader)
 	}
