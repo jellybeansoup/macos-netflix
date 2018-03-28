@@ -56,7 +56,6 @@ class ActivityIndicator: NSView {
 		let diameter = min(layer.bounds.size.width, layer.bounds.size.height)
 		let x = (layer.bounds.size.width - diameter) / 2
 		let y = (layer.bounds.size.height - diameter) / 2
-		print(layer.bounds.size, CGRect(x: x, y: y, width: diameter, height: diameter))
 		imageLayer?.frame = CGRect(x: x, y: y, width: diameter, height: diameter)
 	}
 

@@ -60,8 +60,6 @@ extension ViewController: WKScriptMessageHandler {
 		displayingOverlay = (dictionary["overlayVisible"] as? NSNumber)?.boolValue ?? false
 		displayingHeader = (dictionary["hasHeader"] as? NSNumber)?.boolValue ?? false
 
-		print("displayingControls: \(displayingControls); displayingOverlay: \(displayingOverlay); displayingHeader: \(displayingHeader);")
-
 		titleView?.shouldHideWhenInactive = !(displayingControls || displayingHeader)
 	}
 
@@ -78,7 +76,16 @@ extension ViewController: WKNavigationDelegate {
 		webView.isHidden = false
 
 		if let scriptURL = Bundle.main.url(forResource: "Customization", withExtension: "js"), let script = try? String(contentsOf: scriptURL) {
-			webView.evaluateJavaScript(script, completionHandler: { print($0, $1) })
+			webView.evaluateJavaScript(script, completionHandler: didEvaluateJavascript)
+		}
+	}
+
+	private func didEvaluateJavascript(_ response: Any?, _ error: Error?) {
+		if let error = error {
+			print(error)
+		}
+		else if let response = response {
+			print(response)
 		}
 	}
 
