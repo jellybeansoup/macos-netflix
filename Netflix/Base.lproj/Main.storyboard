@@ -186,6 +186,12 @@
                                                 <action selector="keepInFront:" target="Voe-Tx-rLC" id="2IO-M4-9Kd"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Snap to Corners" id="syH-6G-4y0">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="snapToCorners:" target="Voe-Tx-rLC" id="k1T-F0-gzg"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
                                         <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -225,6 +231,7 @@
                     <connections>
                         <outlet property="keepInFrontMenuItem" destination="cHD-8v-3P0" id="KXX-pL-hst"/>
                         <outlet property="searchMenuItem" destination="Xz5-n4-O0W" id="uiP-kf-K9n"/>
+                        <outlet property="snapToCornersMenuItem" destination="syH-6G-4y0" id="gve-L1-uLn"/>
                     </connections>
                 </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -258,7 +265,7 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Netflix" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
+                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl" customClass="ViewControllerView" customModule="Netflix" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -277,7 +284,7 @@
                                 </constraints>
                             </visualEffectView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="yun-A8-yUA" customClass="ActivityIndicator" customModule="Netflix" customModuleProvider="target">
-                                <rect key="frame" x="223" y="126" width="34" height="18"/>
+                                <rect key="frame" x="223" y="125" width="34" height="20"/>
                             </customView>
                         </subviews>
                         <constraints>

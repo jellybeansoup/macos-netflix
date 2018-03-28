@@ -40,12 +40,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	@IBOutlet weak var keepInFrontMenuItem: NSMenuItem?
 
+	@IBOutlet weak var snapToCornersMenuItem: NSMenuItem?
+
 	override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
 		if let searchMenuItem = searchMenuItem, menuItem === searchMenuItem {
 			return defaultViewController?.canSearch ?? false
 		}
 		else if let keepInFrontMenuItem = keepInFrontMenuItem, menuItem === keepInFrontMenuItem {
 			menuItem.state = (defaultWindowController?.keepInFront ?? true) ? .on : .off
+		}
+		else if let snapToCornersMenuItem = snapToCornersMenuItem, menuItem === snapToCornersMenuItem {
+			menuItem.state = (defaultWindowController?.snapToCorners ?? true) ? .on : .off
 		}
 
 		return true
@@ -80,6 +85,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	@IBAction func keepInFront(_ sender: Any?) {
 		defaultWindowController?.toggleKeepInFront(sender)
+	}
+
+	@IBAction func snapToCorners(_ sender: Any?) {
+		defaultWindowController?.toggleSnapToCorners(sender)
 	}
 
 	@IBAction func github(_ sender: Any?) {

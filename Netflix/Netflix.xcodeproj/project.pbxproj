@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A10B13232069DC6F00A5CB98 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */; };
 		A11E73F3206B586200FEE183 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A11E73F2206B586200FEE183 /* Credits.rtf */; };
+		A11E73F5206BA12900FEE183 /* NSRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E73F4206BA12900FEE183 /* NSRect.swift */; };
 		A139AF97205F775A008680F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AF96205F775A008680F4 /* AppDelegate.swift */; };
 		A139AF99205F775A008680F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AF98205F775A008680F4 /* ViewController.swift */; };
 		A139AF9B205F775A008680F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A139AF9A205F775A008680F4 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Classes/ActivityIndicator.swift; sourceTree = "<group>"; };
 		A11E73F2206B586200FEE183 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Credits.rtf; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
+		A11E73F4206BA12900FEE183 /* NSRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSRect.swift; path = Classes/NSRect.swift; sourceTree = "<group>"; };
 		A139AF93205F775A008680F4 /* Netflix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netflix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A139AF96205F775A008680F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Classes/AppDelegate.swift; sourceTree = "<group>"; };
 		A139AF98205F775A008680F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Classes/ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +75,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A11E73F6206BA14F00FEE183 /* Class Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A11E73F4206BA12900FEE183 /* NSRect.swift */,
+			);
+			name = "Class Extensions";
+			sourceTree = "<group>";
+		};
+		A11E73F7206BA1B900FEE183 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				A139AFA8205FCBFA008680F4 /* TitleView.swift */,
+				A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
 		A139AF8A205F775A008680F4 = {
 			isa = PBXGroup;
 			children = (
@@ -97,8 +116,8 @@
 				A139AF96205F775A008680F4 /* AppDelegate.swift */,
 				A139AF98205F775A008680F4 /* ViewController.swift */,
 				A139AFA6205F7949008680F4 /* WindowController.swift */,
-				A139AFA8205FCBFA008680F4 /* TitleView.swift */,
-				A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */,
+				A11E73F7206BA1B900FEE183 /* Custom Views */,
+				A11E73F6206BA14F00FEE183 /* Class Extensions */,
 				A139AF9A205F775A008680F4 /* Assets.xcassets */,
 				A11E73EE206B1CCB00FEE183 /* Supporting Files */,
 			);
@@ -242,6 +261,7 @@
 			files = (
 				A139AF99205F775A008680F4 /* ViewController.swift in Sources */,
 				A10B13232069DC6F00A5CB98 /* ActivityIndicator.swift in Sources */,
+				A11E73F5206BA12900FEE183 /* NSRect.swift in Sources */,
 				A139AFA7205F7949008680F4 /* WindowController.swift in Sources */,
 				A139AF97205F775A008680F4 /* AppDelegate.swift in Sources */,
 				A139AFA9205FCBFA008680F4 /* TitleView.swift in Sources */,

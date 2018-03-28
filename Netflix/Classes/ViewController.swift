@@ -55,6 +55,14 @@ class ViewController: NSViewController {
 
 }
 
+class ViewControllerView: NSView {
+
+	override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
+		return true
+	}
+
+}
+
 extension ViewController: WKScriptMessageHandler {
 
 	func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
