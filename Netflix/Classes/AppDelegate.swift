@@ -58,7 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	@IBAction func about(_ sender: Any?) {
 		NSApplication.shared.orderFrontStandardAboutPanel(options: [
-			.applicationName: "Netflix wrapper for macOS",
+			NSApplication.AboutPanelOptionKey(rawValue: "ApplicationName"): "Netflix wrapper for macOS",
 			NSApplication.AboutPanelOptionKey(rawValue: "Copyright"): "",
 		])
 	}
