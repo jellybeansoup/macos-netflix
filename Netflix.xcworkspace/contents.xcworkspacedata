@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Netflix.xcodeproj">
+      location = "group:Netflix/Netflix.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Vendor/Sparkle/Sparkle.xcodeproj">
