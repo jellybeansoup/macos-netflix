@@ -57,10 +57,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	@IBAction func about(_ sender: Any?) {
-		NSApplication.shared.orderFrontStandardAboutPanel(options: [
-			.applicationName: "Netflix wrapper for macOS",
-			NSApplication.AboutPanelOptionKey(rawValue: "Copyright"): "",
-		])
+		if #available(OSX 10.13, *) {
+			NSApplication.shared.orderFrontStandardAboutPanel(options: [
+				.applicationName: "Netflix wrapper for macOS",
+				NSApplication.AboutPanelOptionKey(rawValue: "Copyright"): "",
+				])
+		}
+		else {
+			NSApplication.shared.orderFrontStandardAboutPanel(options: [
+				NSApplication.AboutPanelOptionKey(rawValue: "Copyright"): "",
+				])
+		}
 	}
 
 	@IBAction func search(_ sender: Any?) {
