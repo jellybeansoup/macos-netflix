@@ -34,6 +34,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		return true
 	}
 
+	@IBAction func about(_ sender: Any?) {
+		NSApplication.shared.orderFrontStandardAboutPanel(options: [
+			.applicationName: "Netflix wrapper for macOS",
+			NSApplication.AboutPanelOptionKey(rawValue: "Copyright"): "",
+		])
+	}
+
 	@IBAction func search(_ sender: Any?) {
 		defaultViewController?.search(sender)
 	}

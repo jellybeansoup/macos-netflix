@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A10B13232069DC6F00A5CB98 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */; };
+		A11E73F3206B586200FEE183 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A11E73F2206B586200FEE183 /* Credits.rtf */; };
 		A139AF97205F775A008680F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AF96205F775A008680F4 /* AppDelegate.swift */; };
 		A139AF99205F775A008680F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AF98205F775A008680F4 /* ViewController.swift */; };
 		A139AF9B205F775A008680F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A139AF9A205F775A008680F4 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Classes/ActivityIndicator.swift; sourceTree = "<group>"; };
+		A11E73F2206B586200FEE183 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Credits.rtf; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A139AF93205F775A008680F4 /* Netflix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netflix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A139AF96205F775A008680F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Classes/AppDelegate.swift; sourceTree = "<group>"; };
 		A139AF98205F775A008680F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Classes/ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 		A11E73EE206B1CCB00FEE183 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A11E73F2206B586200FEE183 /* Credits.rtf */,
 				A139AFAA205FD565008680F4 /* Customization.js */,
 				A139AF9F205F775A008680F4 /* Info.plist */,
 				A139AFA0205F775A008680F4 /* Netflix.entitlements */,
@@ -181,6 +184,7 @@
 				A139AFAB205FD565008680F4 /* Customization.js in Resources */,
 				A139AF9B205F775A008680F4 /* Assets.xcassets in Resources */,
 				A139AF9E205F775A008680F4 /* Main.storyboard in Resources */,
+				A11E73F3206B586200FEE183 /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

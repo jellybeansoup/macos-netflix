@@ -20,7 +20,7 @@
                                         <menuItem title="About Netflix" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                                <action selector="about:" target="Voe-Tx-rLC" id="CDC-z3-z61"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Check for Updates…" id="Qpp-V4-NyU">
