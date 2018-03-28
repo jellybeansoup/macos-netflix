@@ -31,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			return defaultViewController?.canSearch ?? false
 		}
 
-		return super.validateMenuItem(menuItem)
+		return true
 	}
 
 	@IBAction func search(_ sender: Any?) {
