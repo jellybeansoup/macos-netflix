@@ -24,8 +24,8 @@
 		
 		window.jellystyle.addPaddingToElements();
 		
-		var player = document.getElementsByClassName("nf-player-container").item(0);
-		if (player !== null && player.className.match(/\bdefaultExperience\b/) !== null) {
+		var player = window.jellystyle.playerContainer();
+		if (player !== null) {
 			message.controlsVisible = player.className.match(/\bactive\b/) !== null;
   			message.overlayVisible = !message.controlsVisible && player.className.match(/\binactive\b/) === null;
 			message.playerClass = player.className;
@@ -39,6 +39,19 @@
 		}
 		
 		window.webkit.messageHandlers.jellystyle.postMessage(message);
+	};
+	
+	jellystyle.playerContainer = function() {
+		var player = document.getElementsByClassName("nf-player-container").item(0);
+
+		if (player === null ) {
+			return null;	
+		}
+		else if (player.getElementsByClassName("controls").length === 0) {
+			return null;
+		}
+
+		return player
 	};
 	
 	jellystyle.addPaddingToElements = function() {
