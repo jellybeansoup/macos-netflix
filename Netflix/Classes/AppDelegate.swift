@@ -54,6 +54,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		defaultViewController?.webView?.magnification -= 0.1
 	}
 
+	@IBAction func github(_ sender: Any?) {
+		guard let url = URL(string: "https://github.com/jellybeansoup/macos-netflix") else {
+			fatalError("Could not prepare URL for GitHub Repository")
+		}
+
+		NSWorkspace.shared.open(url)
+	}
+
 	@IBAction func help(_ sender: Any?) {
 		guard let url = URL(string: "https://help.netflix.com/en") else {
 			fatalError("Could not prepare URL for Netflix Help")

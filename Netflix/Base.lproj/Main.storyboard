@@ -199,6 +199,12 @@
                                                 <action selector="help:" target="Voe-Tx-rLC" id="fib-UJ-dTo"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Open Project on GitHub" id="TYd-5h-Ke0">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="github:" target="Voe-Tx-rLC" id="0iB-W8-1E8"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
