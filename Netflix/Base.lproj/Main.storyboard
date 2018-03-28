@@ -179,6 +179,13 @@
                                                 <action selector="performZoom:" target="Ady-hI-5gd" id="DIl-cC-cCs"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="7e3-ag-uQW"/>
+                                        <menuItem title="Keep in Front" id="cHD-8v-3P0">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="keepInFront:" target="Voe-Tx-rLC" id="2IO-M4-9Kd"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
                                         <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -216,6 +223,7 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Netflix" customModuleProvider="target">
                     <connections>
+                        <outlet property="keepInFrontMenuItem" destination="cHD-8v-3P0" id="KXX-pL-hst"/>
                         <outlet property="searchMenuItem" destination="Xz5-n4-O0W" id="uiP-kf-K9n"/>
                     </connections>
                 </customObject>

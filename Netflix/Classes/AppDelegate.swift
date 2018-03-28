@@ -10,8 +10,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	// MARK: Accessing various classes
 
+	private weak var defaultWindowController: WindowController? {
+		guard let window = NSApplication.shared.mainWindow else {
+			return nil
+		}
+
+		guard let windowController = window.windowController as? WindowController else {
+			return nil
+		}
+
+		return windowController
+	}
+
 	private weak var defaultViewController: ViewController? {
-		guard let window = NSApplication.shared.keyWindow else {
+		guard let window = NSApplication.shared.mainWindow else {
 			return nil
 		}
 
@@ -26,9 +38,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	@IBOutlet weak var searchMenuItem: NSMenuItem?
 
+	@IBOutlet weak var keepInFrontMenuItem: NSMenuItem?
+
 	override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
 		if let searchMenuItem = searchMenuItem, menuItem === searchMenuItem {
 			return defaultViewController?.canSearch ?? false
+		}
+		else if let keepInFrontMenuItem = keepInFrontMenuItem, menuItem === keepInFrontMenuItem {
+			menuItem.state = (defaultWindowController?.keepInFront ?? true) ? .on : .off
 		}
 
 		return true
@@ -59,6 +76,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	@IBAction func zoomOut(_ sender: Any?) {
 		defaultViewController?.webView?.magnification -= 0.1
+	}
+
+	@IBAction func keepInFront(_ sender: Any?) {
+		defaultWindowController?.toggleKeepInFront(sender)
 	}
 
 	@IBAction func github(_ sender: Any?) {
