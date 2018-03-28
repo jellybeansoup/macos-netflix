@@ -11,6 +11,7 @@
 		
 		var message = {
 			hasHeader: false,
+			hasSearch: window.jellystyle.hasSearch(),
 			controlsVisible: false,
 			overlayVisible: false,
 			playerClass: null
@@ -52,6 +53,32 @@
 			}
 
 			element.style.paddingTop = "22px";
+		}
+	};
+
+	jellystyle.hasSearch = function() {
+		var searchButton = document.getElementsByClassName("searchTab").item(0);
+		if (searchButton !== null) {
+			return true;
+		}
+		
+		var searchInput = document.getElementsByTagName("input").item(0);
+		if (searchInput !== null && searchInput.hasAttribute("data-search-input") && searchInput.attributes["data-search-input"].value === "true") {
+			return true;
+		}
+		
+		return false;
+	};
+
+	jellystyle.focusSearch = function() {
+		var searchButton = document.getElementsByClassName("searchTab").item(0);
+		if (searchButton !== null) {
+			searchButton.click();
+		}
+		
+		var searchInput = document.getElementsByTagName("input").item(0);
+		if (searchInput !== null && searchInput.hasAttribute("data-search-input") && searchInput.attributes["data-search-input"].value === "true") {
+			searchInput.focus();			
 		}
 	};
 

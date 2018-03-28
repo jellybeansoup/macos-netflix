@@ -41,11 +41,17 @@ class ViewController: NSViewController {
 		currentNavigation = navigation
 	}
 
-	fileprivate var displayingHeader = true
+	internal fileprivate(set) var displayingHeader = true
 
-	fileprivate var displayingControls = false
+	internal fileprivate(set) var displayingControls = false
 
-	fileprivate var displayingOverlay = false
+	internal fileprivate(set) var displayingOverlay = false
+
+	internal fileprivate(set) var canSearch = false
+
+	@IBAction func search(_ sender: Any?) {
+		webView?.evaluateJavaScript("window.jellystyle.focusSearch();", completionHandler: didEvaluateJavascript)
+	}
 
 }
 
@@ -59,6 +65,7 @@ extension ViewController: WKScriptMessageHandler {
 		displayingControls = (dictionary["controlsVisible"] as? NSNumber)?.boolValue ?? false
 		displayingOverlay = (dictionary["overlayVisible"] as? NSNumber)?.boolValue ?? false
 		displayingHeader = (dictionary["hasHeader"] as? NSNumber)?.boolValue ?? false
+		canSearch = (dictionary["hasSearch"] as? NSNumber)?.boolValue ?? false
 
 		titleView?.shouldHideWhenInactive = !(displayingControls || displayingHeader)
 	}
