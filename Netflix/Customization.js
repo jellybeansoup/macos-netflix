@@ -16,16 +16,11 @@
 			playerClass: null
 		};
 		
-		var header = document.getElementsByClassName("pinning-header-container").item(0);
-		if (header !== null) {
-			message.hasHeader = true;
-			header.style.paddingTop = "22px";
-		}
+		var pinningHeader = document.getElementsByClassName("pinning-header-container").item(0);
+		var loginHeader = document.getElementsByClassName("login-header").item(0);
+		message.hasHeader = pinningHeader !== null || loginHeader !== null;
 		
-		var topLeftControls = document.getElementsByClassName("top-left-controls").item(0);
-		if (topLeftControls !== null) {
-			topLeftControls.style.paddingTop = "22px";
-		}
+		window.jellystyle.addPaddingToElements();
 		
 		var player = document.getElementsByClassName("nf-player-container").item(0);
 		if (player !== null && player.className.match(/\bdefaultExperience\b/) !== null) {
@@ -37,6 +32,27 @@
 		}
 		
 		window.webkit.messageHandlers.jellystyle.postMessage(message);
+	};
+	
+	jellystyle.addPaddingToElements = function() {
+		var classes = [
+			"pinning-header-container",
+			"signupBasicHeader",
+			"login-header",
+			"login-body",
+			"top-left-controls",
+		];
+
+		for(var i in classes) {
+			var elementClass = classes[i];
+			var element = document.getElementsByClassName(elementClass).item(0)
+			
+			if (element === null) {
+				continue;
+			}
+
+			element.style.paddingTop = "22px";
+		}
 	};
 
 	jellystyle.startObserving = function(key, element, options) {
@@ -59,5 +75,8 @@
 	};
 
 	jellystyle.startObserving("body", document.body, { attributes: true, subtree: true });
+	
+	// Always run the mutation callback at least once
+	jellystyle.mutationCallback(null);
 
 })();
