@@ -41,6 +41,9 @@
 			jellystyle.startObserving("player", player, { attributes: true, attributeFilter: ["class"] });
 		}
 		
+		// Refresh any insets, just in case we've modifued the document
+		jellystyle.setTitleViewInset(jellystyle.currentTitleViewInset);
+		
 		window.webkit.messageHandlers.jellystyle.postMessage(message);
 	};
 	
@@ -56,6 +59,8 @@
 
 		return player
 	};
+	
+	jellystyle.currentTitleViewInset = null;
 	
 	jellystyle.setTitleViewInset = function(value) {
 		var classes = [
@@ -76,6 +81,8 @@
 
 			element.style.paddingTop = value;
 		}
+		
+		jellystyle.currentTitleViewInset = value;
 	};
 
 	jellystyle.hasSearch = function() {
