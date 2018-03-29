@@ -35,12 +35,20 @@ class WindowController: NSWindowController, NSWindowDelegate {
 
 			window.contentAspectRatio = aspectRatio
 
+			// We want to snap to the corner we're closest to pre-resize
 			let preferredCorner = window.preferredCorner(for: screen)
-			print(preferredCorner)
 
 			var frame = window.frame
 			frame.size.height = aspectRatio.height / aspectRatio.width * frame.size.width
-			frame.origin = frame.originForSnapping(to: preferredCorner, of: screen, with: snapInset)
+
+			if snapToCorners {
+				frame.origin = frame.originForSnapping(to: preferredCorner, of: screen, with: snapInset)
+			}
+			else {
+				// When not snapping, scale towards the center of the window.
+				frame.origin.y += (window.frame.size.height - frame.size.height) / 2
+			}
+
 			window.setFrame(frame, display: true, animate: true)
 		}
 		else {
