@@ -1,6 +1,14 @@
 import Cocoa
 
+protocol TitleViewDelegate: class {
+
+	func titleViewDidChangeVisibility(_ titleView: TitleView)
+
+}
+
 class TitleView: NSVisualEffectView {
+
+	weak var delegate: TitleViewDelegate?
 
 	var shouldHideWhenInactive: Bool = false {
 		didSet { updateVisibility() }
@@ -26,16 +34,21 @@ class TitleView: NSVisualEffectView {
 	}
 
 	override func viewDidMoveToWindow() {
-		let becomeKey = NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: nil, queue: .main) { [weak self] _ in
+		let handler: (_ notification: Notification) -> Void = { [weak self] _ in
 			self?.updateVisibility()
 		}
 
-		let resignKey = NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: nil, queue: .main) { [weak self] _ in
-			self?.updateVisibility()
-		}
+		let becomeKey = NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: nil, queue: .main, using: handler)
+		let resignKey = NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: nil, queue: .main, using: handler)
+		let enterFullScreen = NotificationCenter.default.addObserver(forName: NSWindow.didEnterFullScreenNotification, object: nil, queue: .main, using: handler)
+		let exitFullScreen = NotificationCenter.default.addObserver(forName: NSWindow.didExitFullScreenNotification, object: nil, queue: .main, using: handler)
 
-		keyWindowObservers = [becomeKey, resignKey]
+		keyWindowObservers = [becomeKey, resignKey, enterFullScreen, exitFullScreen]
 		updateVisibility()
+	}
+
+	override var isHidden: Bool {
+		didSet { delegate?.titleViewDidChangeVisibility(self) }
 	}
 
 	private func updateVisibility() {
@@ -43,8 +56,13 @@ class TitleView: NSVisualEffectView {
 			return
 		}
 
-		isHidden = shouldHideWhenInactive && !window.isKeyWindow
-		window.standardWindowButton(.closeButton)?.superview?.isHidden = isHidden
+		let shouldHide = window.styleMask.contains(.fullScreen) || (shouldHideWhenInactive && !window.isKeyWindow)
+
+		guard isHidden != shouldHide else {
+			return
+		}
+
+		isHidden = shouldHide
 	}
 
 }

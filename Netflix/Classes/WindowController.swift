@@ -1,6 +1,20 @@
 import Cocoa
 
+protocol WindowControllerFullscreenDelegate: class {
+
+	func windowDidEnterFullScreen(_ window: NSWindow)
+
+	func windowDidFailToEnterFullScreen(_ window: NSWindow)
+
+	func windowDidExitFullScreen(_ window: NSWindow)
+
+	func windowDidFailToExitFullScreen(_ window: NSWindow)
+
+}
+
 class WindowController: NSWindowController, NSWindowDelegate {
+
+	weak var fullscreenDelegate: WindowControllerFullscreenDelegate?
 
 	override func windowDidLoad() {
 		super.windowDidLoad()
@@ -12,6 +26,7 @@ class WindowController: NSWindowController, NSWindowDelegate {
 		window.delegate = self
 		window.title = ""
 		window.styleMask.insert(.fullSizeContentView)
+		window.collectionBehavior.insert(.fullScreenPrimary)
 		window.titlebarAppearsTransparent = true
 		window.isMovableByWindowBackground = true
 
@@ -29,7 +44,7 @@ class WindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
 
-		if let aspectRatio = aspectRatio {
+		if let aspectRatio = aspectRatio, !window.styleMask.contains(.fullScreen) {
 			guard window.contentAspectRatio != aspectRatio else {
 				return
 			}
@@ -90,7 +105,7 @@ class WindowController: NSWindowController, NSWindowDelegate {
 	private let snapInset = NSRect.Corner.Insets(x: 20, y: 20)
 
 	private func didSetSnapToCorners() {
-		guard snapToCorners, let window = window, let screen = window.screen else {
+		guard snapToCorners, let window = window, !window.styleMask.contains(.fullScreen), let screen = window.screen else {
 			return
 		}
 
@@ -141,6 +156,32 @@ class WindowController: NSWindowController, NSWindowDelegate {
 
 	func windowDidEndLiveResize(_ notification: Notification) {
 		didSetSnapToCorners()
+	}
+
+	func windowDidEnterFullScreen(_ notification: Notification) {
+		guard let window = notification.object as? NSWindow else {
+			return
+		}
+
+		fullscreenDelegate?.windowDidEnterFullScreen(window)
+	}
+
+	func windowDidFailToEnterFullScreen(_ window: NSWindow) {
+		fullscreenDelegate?.windowDidFailToEnterFullScreen(window)
+	}
+
+	func windowDidExitFullScreen(_ notification: Notification) {
+		didSetSnapToCorners()
+
+		guard let window = notification.object as? NSWindow else {
+			return
+		}
+
+		fullscreenDelegate?.windowDidExitFullScreen(window)
+	}
+
+	func windowDidFailToExitFullScreen(_ window: NSWindow) {
+		fullscreenDelegate?.windowDidFailToExitFullScreen(window)
 	}
 
 }

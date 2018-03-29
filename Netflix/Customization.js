@@ -21,9 +21,7 @@
 		var pinningHeader = document.getElementsByClassName("pinning-header-container").item(0);
 		var loginHeader = document.getElementsByClassName("login-header").item(0);
 		message.hasHeader = pinningHeader !== null || loginHeader !== null;
-		
-		window.jellystyle.addPaddingToElements();
-		
+
 		var player = window.jellystyle.playerContainer();
 		if (player !== null) {
 			message.controlsVisible = player.className.match(/\bactive\b/) !== null;
@@ -33,6 +31,11 @@
 			var video = player.getElementsByTagName("video").item(0)
 			if (video !== null) {
 				message.videoSize = [video.videoWidth, video.videoHeight]; 
+			}
+			
+			if (!jellystyle.isObserving("player", player)) {
+				// Dispatch an event to get the full screen icon to reflect current status
+				document.dispatchEvent(new Event("fullscreenchange"))
 			}
 
 			jellystyle.startObserving("player", player, { attributes: true, attributeFilter: ["class"] });
@@ -54,7 +57,7 @@
 		return player
 	};
 	
-	jellystyle.addPaddingToElements = function() {
+	jellystyle.setTitleViewInset = function(value) {
 		var classes = [
 			"pinning-header-container",
 			"signupBasicHeader",
@@ -71,7 +74,7 @@
 				continue;
 			}
 
-			element.style.paddingTop = "22px";
+			element.style.paddingTop = value;
 		}
 	};
 
@@ -102,21 +105,35 @@
 	};
 
 	jellystyle.startObserving = function(key, element, options) {
-		if (jellystyle.mutationObservers[key] !== undefined) {
+		if (jellystyle.isObserving(key, element)) {
 			return;
 		}
 	
 		var observer = new MutationObserver(jellystyle.mutationCallback);
 		observer.observe(element, options);
-		jellystyle.mutationObservers[key] = observer;
+		jellystyle.mutationObservers[key] = [observer, element];
+	};
+	
+	jellystyle.isObserving = function(key, element) {
+		if (jellystyle.mutationObservers[key] === undefined) {
+			return false;
+		}
+		
+		var observer = jellystyle.mutationObservers[key];
+
+		if (observer[1] !== element) {
+			return false;
+		}
+
+		return true;
 	};
 
 	jellystyle.stopObserving = function(key, element, options) {
-		if (jellystyle.mutationObservers[key] === undefined) {
+		if (!jellystyle.isObserving(key, element)) {
 			return;
 		}
 	
-		jellystyle.mutationObservers[key].disconnect();
+		jellystyle.mutationObservers[key][0].disconnect();
 		delete jellystyle.mutationObservers[key];
 	};
 
@@ -124,5 +141,47 @@
 	
 	// Always run the mutation callback at least once
 	jellystyle.mutationCallback(null);
+	
+	// MARK: Full screen mode
+
+	HTMLDocument.prototype.fullscreenEnabled = true;
+	
+	HTMLElement.prototype.requestFullscreen = function() {
+		window.jellystyle.pendingFullScreenElement = this;
+		window.webkit.messageHandlers.requestFullscreen.postMessage(true);
+		return new Promise(function(resolve) { resolve(); });
+	};
+	
+	HTMLDocument.prototype.exitFullscreen = function() {
+		window.webkit.messageHandlers.requestFullscreen.postMessage(false);
+		return new Promise(function(resolve) { resolve(); });
+	};
+	
+	jellystyle.pendingFullScreenElement = null;
+
+	jellystyle.windowDidEnterFullScreen = function(success) {
+		if (success) {
+			document.fullscreen = true;
+			document.fullscreenElement = window.jellystyle.pendingFullScreenElement || document.body;
+			document.dispatchEvent(new Event("fullscreenchange"))
+		}
+		else {
+			document.dispatchEvent(new Event("fullscreenerror"))
+		}
+
+		window.jellystyle.pendingFullScreenElement = null;
+	};
+
+	jellystyle.windowDidExitFullScreen = function(success) {
+		if (success) {
+			document.fullscreen = false;
+			document.fullscreenElement = null;
+			document.dispatchEvent(new Event("fullscreenchange"))
+		}
+		else {
+			document.dispatchEvent(new Event("fullscreenerror"))
+		}
+	};
+
 
 })();
