@@ -8,6 +8,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		return NSApplication.shared.delegate as? AppDelegate
 	}()
 
+	func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+		return true
+	}
+
 	// MARK: Accessing various classes
 
 	private weak var defaultWindowController: WindowController? {
