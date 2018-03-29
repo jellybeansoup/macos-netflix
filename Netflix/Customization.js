@@ -7,8 +7,6 @@
 	};
 
 	jellystyle.mutationCallback = function(mutation) {
-		console.log("mutationCallback", mutation);
-		
 		var message = {
 			hasHeader: false,
 			hasSearch: window.jellystyle.hasSearch(),
@@ -148,6 +146,13 @@
 	
 	// Always run the mutation callback at least once
 	jellystyle.mutationCallback(null);
+	
+	// MARK: Console override
+	
+	console.log = function() {
+		var message = Array.from(arguments).join(" ");
+		window.webkit.messageHandlers.jellystyle.postMessage(message);
+	}
 	
 	// MARK: Full screen mode
 
