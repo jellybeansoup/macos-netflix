@@ -37,7 +37,7 @@ class WindowController: NSWindowController, NSWindowDelegate {
 			window.contentAspectRatio = aspectRatio
 
 			// We want to snap to the corner we're closest to pre-resize
-			let preferredCorner = window.preferredCorner(for: screen)
+			let preferredCorner = window.frame.preferredCorner(for: screen)
 
 			var frame = window.frame
 			frame.size.height = aspectRatio.height / aspectRatio.width * frame.size.width
@@ -141,22 +141,6 @@ class WindowController: NSWindowController, NSWindowDelegate {
 
 	func windowDidEndLiveResize(_ notification: Notification) {
 		didSetSnapToCorners()
-	}
-
-}
-
-extension NSWindow {
-
-	func preferredCorner(for screen: NSScreen) -> NSRect.Corner {
-		return frame.preferredCorner(for: screen)
-	}
-
-	func originForSnappingToPreferredCorner(of screen: NSScreen, with insets: NSRect.Corner.Insets = .zero) -> NSPoint {
-		return frame.originForSnappingToPreferredCorner(of: screen, with: insets)
-	}
-
-	func originForSnapping(to corner: NSRect.Corner, of screen: NSScreen, with insets: NSRect.Corner.Insets = .zero) -> NSPoint {
-		return frame.originForSnapping(to: corner, of: screen, with: insets)
 	}
 
 }
