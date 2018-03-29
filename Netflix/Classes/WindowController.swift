@@ -19,6 +19,7 @@ class WindowController: NSWindowController, NSWindowDelegate {
 		window.contentMinSize = NSSize(width: 640, height: 360)
 
 		didSetKeepInFront()
+		didSetSnapToCorners()
 	}
 
 	// MARK: Lock aspect ratio in videos
