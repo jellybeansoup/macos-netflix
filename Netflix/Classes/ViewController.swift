@@ -7,7 +7,7 @@ class ViewController: NSViewController {
 		return view.window?.windowController as? WindowController
 	}
 
-	@IBOutlet weak var webView: WKWebView?
+	var webView: WKWebView!
 
 	@IBOutlet weak var titleView: TitleView?
 
@@ -22,15 +22,23 @@ class ViewController: NSViewController {
 
 		titleView?.delegate = self
 
-		guard let webView = webView else {
-			return
-		}
+		let configuration = WKWebViewConfiguration()
+		configuration.userContentController.add(self, name: "jellystyle")
+		configuration.userContentController.add(self, name: "requestFullscreen")
 
+		webView = WKWebView(frame: view.frame, configuration: configuration)
 		webView.isHidden = true
 		webView.navigationDelegate = self
 		webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6"
-		webView.configuration.userContentController.add(self, name: "jellystyle")
-		webView.configuration.userContentController.add(self, name: "requestFullscreen")
+
+		webView.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(webView, positioned: .below, relativeTo: titleView)
+		view.addConstraints([
+			webView.topAnchor.constraint(equalTo: view.topAnchor),
+			webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			webView.leftAnchor.constraint(equalTo: view.leftAnchor),
+			webView.rightAnchor.constraint(equalTo: view.rightAnchor),
+		])
 
 //		let dataTypes = WKWebsiteDataStore.allWebsiteDataTypes()
 //		webView.configuration.websiteDataStore.removeData(ofTypes: dataTypes, modifiedSince: .distantPast, completionHandler: {})

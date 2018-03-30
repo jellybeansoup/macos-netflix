@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="13771"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -269,13 +269,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QKm-LV-Asv">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences" javaScriptCanOpenWindowsAutomatically="NO"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
                             <visualEffectView wantsLayer="YES" focusRingType="none" appearanceType="vibrantDark" blendingMode="withinWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="z9V-fC-6M6" customClass="TitleView" customModule="Netflix" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="248" width="480" height="22"/>
                                 <constraints>
@@ -284,27 +277,22 @@
                                 </constraints>
                             </visualEffectView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="yun-A8-yUA" customClass="ActivityIndicator" customModule="Netflix" customModuleProvider="target">
-                                <rect key="frame" x="223" y="125" width="34" height="20"/>
+                                <rect key="frame" x="223" y="126" width="34" height="18"/>
                             </customView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" multiplier="0.07" id="25Q-W6-rYW"/>
-                            <constraint firstAttribute="trailing" secondItem="QKm-LV-Asv" secondAttribute="trailing" id="7UH-v1-052"/>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="9QB-W7-hFq"/>
                             <constraint firstItem="z9V-fC-6M6" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="CNQ-Pt-CDI"/>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" multiplier="0.07" id="J9Z-PQ-JFX"/>
                             <constraint firstItem="z9V-fC-6M6" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="JHL-bB-XU6"/>
-                            <constraint firstItem="QKm-LV-Asv" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="QAR-wj-b6v"/>
-                            <constraint firstItem="QKm-LV-Asv" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Sf1-QA-1ca"/>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="ZH4-mR-tut"/>
-                            <constraint firstAttribute="bottom" secondItem="QKm-LV-Asv" secondAttribute="bottom" id="fLE-E5-JDF"/>
                             <constraint firstAttribute="trailing" secondItem="z9V-fC-6M6" secondAttribute="trailing" id="nuc-Kc-GcC"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="yun-A8-yUA" id="eP2-ZE-EhL"/>
                         <outlet property="titleView" destination="z9V-fC-6M6" id="zAL-bP-ieo"/>
-                        <outlet property="webView" destination="QKm-LV-Asv" id="8c0-kI-E4o"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
