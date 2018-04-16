@@ -61,25 +61,40 @@
 	jellystyle.currentTitleViewInset = null;
 	
 	jellystyle.setTitleViewInset = function(value) {
-		var classes = [
+		var paddingClasses = [
 			"pinning-header-container",
 			"signupBasicHeader",
 			"login-header",
 			"login-body",
 			"top-left-controls",
 		];
-
-		for(var i in classes) {
-			var elementClass = classes[i];
+		
+		for(var i in paddingClasses) {
+			var elementClass = paddingClasses[i];
 			var element = document.getElementsByClassName(elementClass).item(0)
 			
 			if (element === null) {
 				continue;
 			}
-
+		
 			element.style.paddingTop = value;
 		}
+
+		var marginClasses = [
+			"advisory",
+		];
 		
+		for(var i in marginClasses) {
+			var elementClass = marginClasses[i];
+			var element = document.getElementsByClassName(elementClass).item(0)
+			
+			if (element === null) {
+				continue;
+			}
+		
+			element.style.marginTop = value;
+		}
+
 		jellystyle.currentTitleViewInset = value;
 	};
 
