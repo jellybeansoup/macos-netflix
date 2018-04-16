@@ -103,13 +103,15 @@ class WindowController: NSWindowController, NSWindowDelegate {
 	private let snapInset = NSRect.Corner.Insets(x: 20, y: 20)
 
 	private func didSetSnapToCorners() {
-		guard snapToCorners, !isMoving, let window = window, !window.styleMask.contains(.fullScreen), let screen = window.screen else {
+		guard snapToCorners, let window = window, !window.styleMask.contains(.fullScreen), let screen = window.screen else {
+			self.window?.maxSize = NSSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
+
 			return
 		}
 
 		window.maxSize = NSSize(width: screen.visibleFrame.width * 0.75, height: screen.visibleFrame.height * 0.75)
 
-		guard window.frame.snappedCorner(of: screen, with: snapInset) == nil else {
+		guard !isMoving, window.frame.snappedCorner(of: screen, with: snapInset) == nil else {
 			return
 		}
 
