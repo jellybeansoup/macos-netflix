@@ -26,9 +26,9 @@ class WindowController: NSWindowController, NSWindowDelegate {
 		window.delegate = self
 		window.title = ""
 		window.styleMask.insert(.fullSizeContentView)
-		window.collectionBehavior.insert(.fullScreenPrimary)
 		window.titlebarAppearsTransparent = true
 		window.isMovableByWindowBackground = true
+		window.makeMain()
 
 		window.setContentSize(NSSize(width: 1280, height: 904))
 		window.contentMinSize = NSSize(width: 180, height: 102)
@@ -81,7 +81,21 @@ class WindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
 
-		window.level = self.keepInFront ? .modalPanel : .normal
+		window.styleMask.insert(.borderless)
+		window.styleMask.insert(.nonactivatingPanel)
+
+		if keepInFront, snapToCorners {
+			window.level = .mainMenu
+			window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .managed]
+		}
+		else if keepInFront {
+			window.level = .floating
+			window.collectionBehavior = [.fullScreenPrimary, .managed]
+		}
+		else {
+			window.level = .normal
+			window.collectionBehavior = [.fullScreenPrimary, .managed]
+		}
 	}
 
 	var keepInFront: Bool {
@@ -207,6 +221,14 @@ class WindowController: NSWindowController, NSWindowDelegate {
 
 	func windowDidFailToExitFullScreen(_ window: NSWindow) {
 		fullscreenDelegate?.windowDidFailToExitFullScreen(window)
+	}
+
+}
+
+class WindowControllerWindow: NSPanel {
+
+	override var canBecomeMain: Bool {
+		return true
 	}
 
 }
