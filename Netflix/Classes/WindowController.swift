@@ -31,7 +31,7 @@ class WindowController: NSWindowController, NSWindowDelegate {
 		window.isMovableByWindowBackground = true
 
 		window.setContentSize(NSSize(width: 1280, height: 904))
-		window.contentMinSize = NSSize(width: 640, height: 360)
+		window.contentMinSize = NSSize(width: 180, height: 102)
 
 		didSetKeepInFront()
 		didSetSnapToCorners()
