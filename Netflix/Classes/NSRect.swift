@@ -42,6 +42,32 @@ extension NSRect {
 
 	}
 
+	func snappedCorner(of screen: NSScreen, with insets: NSRect.Corner.Insets = .zero) -> NSRect.Corner? {
+		var corner = NSRect.Corner()
+
+		if origin.x == screen.visibleFrame.minX + insets.x {
+			corner.x = .leading
+		}
+		else if origin.x == screen.visibleFrame.maxX - (width + insets.x) {
+			corner.x = .trailing
+		}
+		else {
+			return nil
+		}
+
+		if origin.y == screen.visibleFrame.minY + insets.y {
+			corner.y = .leading
+		}
+		else if origin.y == screen.visibleFrame.maxY - (height + insets.y) {
+			corner.y = .trailing
+		}
+		else {
+			return nil
+		}
+
+		return corner
+	}
+
 	func preferredCorner(for screen: NSScreen) -> NSRect.Corner {
 		var corner = NSRect.Corner()
 

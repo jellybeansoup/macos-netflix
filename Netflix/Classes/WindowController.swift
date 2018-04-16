@@ -100,17 +100,30 @@ class WindowController: NSWindowController, NSWindowDelegate {
 
 	static private let snapToCornersKey = "com.jellystyle.Netflix.WindowController.SnapToCorners"
 
-	private var isMoving = false
-
 	private let snapInset = NSRect.Corner.Insets(x: 20, y: 20)
 
 	private func didSetSnapToCorners() {
-		guard snapToCorners, let window = window, !window.styleMask.contains(.fullScreen), let screen = window.screen else {
+		guard snapToCorners, !isMoving, let window = window, !window.styleMask.contains(.fullScreen), let screen = window.screen else {
+			return
+		}
+
+		window.maxSize = NSSize(width: screen.visibleFrame.width * 0.75, height: screen.visibleFrame.height * 0.75)
+
+		guard window.frame.snappedCorner(of: screen, with: snapInset) == nil else {
 			return
 		}
 
 		var frame = window.frame
 		frame.origin = frame.originForSnappingToPreferredCorner(of: screen, with: snapInset)
+
+		if frame.size.width > window.maxSize.width {
+			frame.size.width = window.maxSize.width
+		}
+
+		if frame.size.height > window.maxSize.height {
+			frame.size.height = window.maxSize.height
+		}
+
 		window.setFrame(frame, display: false, animate: true)
 	}
 
@@ -127,6 +140,8 @@ class WindowController: NSWindowController, NSWindowDelegate {
 	}
 
 	// MARK: NSResponder
+
+	private var isMoving = false
 
 	override func mouseUp(with event: NSEvent) {
 		super.mouseUp(with: event)
@@ -152,6 +167,14 @@ class WindowController: NSWindowController, NSWindowDelegate {
 
 	func windowDidMove(_ notification: Notification) {
 		isMoving = true // Sometimes windowWillMove isn't called
+	}
+
+	func windowDidChangeScreen(_ notification: Notification) {
+		didSetSnapToCorners()
+	}
+
+	func windowDidChangeBackingProperties(_ notification: Notification) {
+		didSetSnapToCorners()
 	}
 
 	func windowDidEndLiveResize(_ notification: Notification) {
