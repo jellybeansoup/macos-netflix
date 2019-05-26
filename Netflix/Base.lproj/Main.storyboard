@@ -278,7 +278,7 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="yun-A8-yUA" customClass="ActivityIndicator" customModule="Netflix" customModuleProvider="target">
                                 <rect key="frame" x="223" y="126" width="34" height="18"/>
                             </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="b7R-fj-LbD">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="b7R-fj-LbD" customClass="TitleColorView" customModule="Netflix" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="248" width="480" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="tx0-6n-MhH"/>
