@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D6A8958229A7FAA00305AEF /* TitleBarColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6A8957229A7FAA00305AEF /* TitleBarColorView.swift */; };
 		A10B13232069DC6F00A5CB98 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */; };
 		A11E73F3206B586200FEE183 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A11E73F2206B586200FEE183 /* Credits.rtf */; };
 		A11E73F5206BA12900FEE183 /* NSRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E73F4206BA12900FEE183 /* NSRect.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8D6A8957229A7FAA00305AEF /* TitleBarColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBarColorView.swift; sourceTree = "<group>"; };
 		A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Classes/ActivityIndicator.swift; sourceTree = "<group>"; };
 		A11E73F2206B586200FEE183 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Credits.rtf; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A11E73F4206BA12900FEE183 /* NSRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSRect.swift; path = Classes/NSRect.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			children = (
 				A139AFA8205FCBFA008680F4 /* TitleView.swift */,
 				A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */,
+				8D6A8957229A7FAA00305AEF /* TitleBarColorView.swift */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				A139AF99205F775A008680F4 /* ViewController.swift in Sources */,
 				A10B13232069DC6F00A5CB98 /* ActivityIndicator.swift in Sources */,
 				A11E73F5206BA12900FEE183 /* NSRect.swift in Sources */,
+				8D6A8958229A7FAA00305AEF /* TitleBarColorView.swift in Sources */,
 				A139AFA7205F7949008680F4 /* WindowController.swift in Sources */,
 				A139AF97205F775A008680F4 /* AppDelegate.swift in Sources */,
 				A139AFA9205FCBFA008680F4 /* TitleView.swift in Sources */,

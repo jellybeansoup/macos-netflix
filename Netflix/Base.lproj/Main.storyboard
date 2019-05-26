@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -278,14 +278,23 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="yun-A8-yUA" customClass="ActivityIndicator" customModule="Netflix" customModuleProvider="target">
                                 <rect key="frame" x="223" y="126" width="34" height="18"/>
                             </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="b7R-fj-LbD">
+                                <rect key="frame" x="0.0" y="248" width="480" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="tx0-6n-MhH"/>
+                                </constraints>
+                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" multiplier="0.07" id="25Q-W6-rYW"/>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="9QB-W7-hFq"/>
                             <constraint firstItem="z9V-fC-6M6" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="CNQ-Pt-CDI"/>
+                            <constraint firstItem="b7R-fj-LbD" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="HBg-dp-c4U"/>
+                            <constraint firstAttribute="trailing" secondItem="b7R-fj-LbD" secondAttribute="trailing" id="HoX-Hd-oF9"/>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" multiplier="0.07" id="J9Z-PQ-JFX"/>
                             <constraint firstItem="z9V-fC-6M6" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="JHL-bB-XU6"/>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="ZH4-mR-tut"/>
+                            <constraint firstItem="b7R-fj-LbD" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="dpN-RL-l6R"/>
                             <constraint firstAttribute="trailing" secondItem="z9V-fC-6M6" secondAttribute="trailing" id="nuc-Kc-GcC"/>
                         </constraints>
                     </view>
