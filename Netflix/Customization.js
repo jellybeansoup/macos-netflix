@@ -49,13 +49,23 @@
 		var player = document.getElementsByClassName("nf-player-container").item(0);
 
 		if (player === null ) {
-			return null;	
-		}
-		else if (player.getElementsByClassName("controls").length === 0) {
 			return null;
 		}
 
-		return player
+		var potentialControlElements = [
+			player.getElementsByClassName("controls"),
+			player.getElementsByClassName("PlayerControlsNeo__all-controls"),
+		]
+
+		for(var i in potentialControlElements) {
+			var potentialControlElement = potentialControlElements[i];
+
+			if (potentialControlElement.length >= 1) {
+				return player
+			}
+		}
+
+		return null;
 	};
 	
 	jellystyle.currentTitleViewInset = null;
