@@ -61,17 +61,16 @@
 	jellystyle.currentTitleViewInset = null;
 	
 	jellystyle.setTitleViewInset = function(value) {
-		var paddingClasses = [
-			"pinning-header-container",
-			"signupBasicHeader",
-			"login-header",
-			"login-body",
-			"top-left-controls",
+		var paddingElements = [
+			document.getElementsByClassName("signupBasicHeader").item(0),
+			document.getElementsByClassName("main-header").item(0),
+			document.getElementsByClassName("login-header").item(0),
+			document.getElementsByClassName("login-body").item(0),
+			document.getElementsByClassName("top-left-controls").item(0),
 		];
 		
-		for(var i in paddingClasses) {
-			var elementClass = paddingClasses[i];
-			var element = document.getElementsByClassName(elementClass).item(0)
+		for(var i in paddingElements) {
+			var element = paddingElements[i];
 			
 			if (element === null) {
 				continue;
@@ -80,14 +79,14 @@
 			element.style.paddingTop = value;
 		}
 
-		var marginClasses = [
-			"advisory",
+		var marginElements = [
+			document.getElementsByClassName("member-header").item(0),
+			document.getElementsByClassName("advisory").item(0),
 		];
 		
-		for(var i in marginClasses) {
-			var elementClass = marginClasses[i];
-			var element = document.getElementsByClassName(elementClass).item(0)
-			
+		for(var i in marginElements) {
+			var element = marginElements[i];
+
 			if (element === null) {
 				continue;
 			}
