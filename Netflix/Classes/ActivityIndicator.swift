@@ -24,7 +24,7 @@ class ActivityIndicator: NSView {
 		}
 
 		let sublayer = CALayer()
-		sublayer.contents = NSImage(named: NSImage.Name("site-spinner"))
+		sublayer.contents = NSImage(named: "site-spinner")
 		sublayer.frame = bounds
 		layer.addSublayer(sublayer)
 		imageLayer = sublayer

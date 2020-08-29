@@ -46,7 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	@IBOutlet weak var snapToCornersMenuItem: NSMenuItem?
 
-	override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+	func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
 		if let searchMenuItem = searchMenuItem, menuItem === searchMenuItem {
 			return defaultViewController?.canSearch ?? false
 		}
