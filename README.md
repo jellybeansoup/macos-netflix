@@ -12,6 +12,11 @@ Unzip the app, and drag it into your Applications folder. If you accidentally do
 
 That's all there is. Run and enjoy. I highly recommend watching "Don't Trust the B---- in Apartment 23"; such an excellent show, and Krysten Ritter is amaze.
 
+If you have [Homebrew](https://brew.sh/) installed, try run the following in your terminal:
+```shell
+brew install --cask jellybeansoup-netflix
+```
+
 ## Legal
 
 Copyright © 2018 Daniel Farrelly. Released under the [BSD license](https://github.com/jellybeansoup/macos-netflix/blob/master/LICENSE).
