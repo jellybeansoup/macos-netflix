@@ -2,7 +2,7 @@ import Cocoa
 import WebKit
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
 
 	static weak var shared: AppDelegate? = {
 		return NSApplication.shared.delegate as? AppDelegate
