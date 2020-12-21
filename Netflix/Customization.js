@@ -17,8 +17,12 @@
 		};
 		
 		var pinningHeader = document.getElementsByClassName("pinning-header-container").item(0);
+		var mainHeader = document.getElementsByClassName("main-header").item(0);
+		var memberHeader = document.getElementsByClassName("member-header").item(0);
+		var ourStoryHeader = document.getElementsByClassName("our-story-header").item(0);
 		var loginHeader = document.getElementsByClassName("login-header").item(0);
-		message.hasHeader = pinningHeader !== null || loginHeader !== null;
+		var globalHeader = document.getElementsByClassName("global-header").item(0);
+		message.hasHeader = pinningHeader !== null || mainHeader !== null || memberHeader !== null || ourStoryHeader !== null || loginHeader !== null || globalHeader !== null;
 
 		var player = window.jellystyle.playerContainer();
 		if (player !== null) {
@@ -39,7 +43,7 @@
 			jellystyle.startObserving("player", player, { attributes: true, attributeFilter: ["class"] });
 		}
 		
-		// Refresh any insets, just in case we've modifued the document
+		// Refresh any insets, just in case we've modified the document
 		jellystyle.setTitleViewInset(jellystyle.currentTitleViewInset);
 		
 		window.webkit.messageHandlers.jellystyle.postMessage(message);
@@ -71,37 +75,25 @@
 	jellystyle.currentTitleViewInset = null;
 	
 	jellystyle.setTitleViewInset = function(value) {
-		var paddingElements = [
-			document.getElementsByClassName("signupBasicHeader").item(0),
-			document.getElementsByClassName("main-header").item(0),
-			document.getElementsByClassName("login-header").item(0),
-			document.getElementsByClassName("login-body").item(0),
-			document.getElementsByClassName("top-left-controls").item(0),
-		];
+		var classNames = {
+			"main-header": "marginTop",
+			"member-header": "marginTop",
+			"our-story-header": "marginTop",
+			"login-header": "marginTop",
+			"login-body": "paddingTop",
+			"global-header": "paddingTop",
+			"top-left-controls": "paddingTop",
+		};
 		
-		for(var i in paddingElements) {
-			var element = paddingElements[i];
-			
-			if (element === null) {
-				continue;
-			}
-		
-			element.style.paddingTop = value;
-		}
-
-		var marginElements = [
-			document.getElementsByClassName("member-header").item(0),
-			document.getElementsByClassName("advisory").item(0),
-		];
-		
-		for(var i in marginElements) {
-			var element = marginElements[i];
+		for(const [className, propertyName] of Object.entries(classNames)) {
+			//var propertyName = classNames[className];
+			var element = document.getElementsByClassName(className).item(0)
 
 			if (element === null) {
 				continue;
 			}
-		
-			element.style.marginTop = value;
+
+			element.style[propertyName] = value;
 		}
 
 		jellystyle.currentTitleViewInset = value;
