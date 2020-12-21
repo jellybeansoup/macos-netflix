@@ -47,6 +47,19 @@ class TitleView: NSVisualEffectView {
 		updateVisibility()
 	}
 
+	@IBOutlet private var heightConstraint: NSLayoutConstraint?
+
+	override func layout() {
+		super.layout()
+
+		if let heightConstraint = heightConstraint,
+			let themeFrame = window?.contentView?.superview,
+			let unmanagedTitlebarViewController = themeFrame.perform(NSSelectorFromString("titlebarViewController")),
+			let titlebarViewController = unmanagedTitlebarViewController.takeUnretainedValue() as? NSViewController {
+			heightConstraint.constant = titlebarViewController.view.bounds.size.height
+		}
+	}
+
 	override var isHidden: Bool {
 		didSet { delegate?.titleViewDidChangeVisibility(self) }
 	}

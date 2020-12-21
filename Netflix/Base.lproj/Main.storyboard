@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -271,9 +271,11 @@
                             <visualEffectView wantsLayer="YES" focusRingType="none" appearanceType="inheritedVibrantDark" blendingMode="withinWindow" material="headerView" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="z9V-fC-6M6" customClass="TitleView" customModule="Netflix" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="248" width="480" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="5Fo-LI-MHq"/>
                                     <constraint firstAttribute="height" constant="22" id="fVd-8N-RfB"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="heightConstraint" destination="fVd-8N-RfB" id="S7E-RC-Rft"/>
+                                </connections>
                             </visualEffectView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="yun-A8-yUA" customClass="ActivityIndicator" customModule="Netflix" customModuleProvider="target">
                                 <rect key="frame" x="223" y="126" width="34" height="18"/>

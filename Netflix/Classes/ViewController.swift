@@ -95,7 +95,7 @@ extension ViewController: TitleViewDelegate {
 			return
 		}
 
-		let value: String = titleView.isHidden ? "null" : "\"22px\""
+		let value: String = titleView.isHidden ? "null" : String(format: "\"%1.1fpx\"", titleView.bounds.size.height)
 		webView.evaluateJavaScript("window.jellystyle.setTitleViewInset(\(value));", completionHandler: didEvaluateJavascript)
 
 		if let window = view.window, !window.styleMask.contains(.fullScreen) {
