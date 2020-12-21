@@ -10,6 +10,33 @@ class TitleView: NSVisualEffectView {
 
 	weak var delegate: TitleViewDelegate?
 
+	override init(frame frameRect: NSRect) {
+		super.init(frame: frameRect)
+		initialize()
+	}
+
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		initialize()
+	}
+
+	private func initialize() {
+		wantsLayer = true
+		blendingMode = .withinWindow
+		material = .titlebar
+
+		let overlay = CALayer()
+		overlay.frame = layer?.bounds ?? .zero
+		overlay.backgroundColor = NSColor(deviceWhite: 0, alpha: 0.4).cgColor
+		overlay.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
+		layer?.addSublayer(overlay)
+
+		let shadow = NSShadow()
+		shadow.shadowBlurRadius = 1
+		shadow.shadowColor = NSColor(deviceWhite: 0, alpha: 0.5)
+		self.shadow = shadow
+	}
+
 	var shouldHideWhenInactive: Bool = false {
 		didSet { updateVisibility() }
 	}

@@ -268,32 +268,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView wantsLayer="YES" focusRingType="none" appearanceType="inheritedVibrantDark" blendingMode="withinWindow" material="headerView" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="z9V-fC-6M6" customClass="TitleView" customModule="Netflix" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="4kz-34-jds" customClass="TitleView" customModule="Netflix" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="248" width="480" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="fVd-8N-RfB"/>
+                                    <constraint firstAttribute="height" constant="22" id="ij7-tp-tEa"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="heightConstraint" destination="fVd-8N-RfB" id="S7E-RC-Rft"/>
+                                    <outlet property="heightConstraint" destination="ij7-tp-tEa" id="MIX-Sf-ndf"/>
                                 </connections>
-                            </visualEffectView>
+                            </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="yun-A8-yUA" customClass="ActivityIndicator" customModule="Netflix" customModuleProvider="target">
                                 <rect key="frame" x="223" y="126" width="34" height="18"/>
                             </customView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" multiplier="0.07" id="25Q-W6-rYW"/>
+                            <constraint firstItem="4kz-34-jds" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="3zo-fM-8f1"/>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="9QB-W7-hFq"/>
-                            <constraint firstItem="z9V-fC-6M6" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="CNQ-Pt-CDI"/>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" multiplier="0.07" id="J9Z-PQ-JFX"/>
-                            <constraint firstItem="z9V-fC-6M6" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="JHL-bB-XU6"/>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="ZH4-mR-tut"/>
-                            <constraint firstAttribute="trailing" secondItem="z9V-fC-6M6" secondAttribute="trailing" id="nuc-Kc-GcC"/>
+                            <constraint firstAttribute="trailing" secondItem="4kz-34-jds" secondAttribute="trailing" id="c4d-fj-zht"/>
+                            <constraint firstItem="4kz-34-jds" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="rhp-hA-UHa"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="yun-A8-yUA" id="eP2-ZE-EhL"/>
-                        <outlet property="titleView" destination="z9V-fC-6M6" id="zAL-bP-ieo"/>
+                        <outlet property="titleView" destination="4kz-34-jds" id="tcw-4D-vTJ"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
