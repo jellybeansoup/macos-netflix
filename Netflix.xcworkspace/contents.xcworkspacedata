@@ -4,7 +4,4 @@
    <FileRef
       location = "group:Netflix/Netflix.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:Vendor/Sparkle/Sparkle.xcodeproj">
-   </FileRef>
 </Workspace>

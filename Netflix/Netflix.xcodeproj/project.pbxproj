@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		A10B13232069DC6F00A5CB98 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */; };
 		A11E73F3206B586200FEE183 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A11E73F2206B586200FEE183 /* Credits.rtf */; };
 		A11E73F5206BA12900FEE183 /* NSRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E73F4206BA12900FEE183 /* NSRect.swift */; };
+		A1310602259060E000548F12 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = A1310601259060E000548F12 /* Sparkle */; };
 		A139AF97205F775A008680F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AF96205F775A008680F4 /* AppDelegate.swift */; };
 		A139AF99205F775A008680F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AF98205F775A008680F4 /* ViewController.swift */; };
 		A139AF9B205F775A008680F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A139AF9A205F775A008680F4 /* Assets.xcassets */; };
@@ -17,23 +18,7 @@
 		A139AFA7205F7949008680F4 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AFA6205F7949008680F4 /* WindowController.swift */; };
 		A139AFA9205FCBFA008680F4 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AFA8205FCBFA008680F4 /* TitleView.swift */; };
 		A139AFAB205FD565008680F4 /* Customization.js in Resources */ = {isa = PBXBuildFile; fileRef = A139AFAA205FD565008680F4 /* Customization.js */; };
-		A162DCCC206A4A6000C053D1 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A162DCCD206A4A6000C053D1 /* Sparkle.framework */; };
-		A162DCCF206A57AC00C053D1 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A162DCCD206A4A6000C053D1 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		A162DCCE206A578E00C053D1 /* Copy Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				A162DCCF206A57AC00C053D1 /* Sparkle.framework in Copy Frameworks */,
-			);
-			name = "Copy Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Classes/ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -49,7 +34,6 @@
 		A139AFA6205F7949008680F4 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WindowController.swift; path = Classes/WindowController.swift; sourceTree = "<group>"; };
 		A139AFA8205FCBFA008680F4 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TitleView.swift; path = Classes/TitleView.swift; sourceTree = "<group>"; };
 		A139AFAA205FD565008680F4 /* Customization.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Customization.js; sourceTree = "<group>"; };
-		A162DCCD206A4A6000C053D1 /* Sparkle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sparkle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A162DCCC206A4A6000C053D1 /* Sparkle.framework in Frameworks */,
+				A1310602259060E000548F12 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				A139AF95205F775A008680F4 /* Netflix */,
-				A162DCCB206A4A2F00C053D1 /* Frameworks */,
 				A139AF94205F775A008680F4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,14 +107,6 @@
 			name = Netflix;
 			sourceTree = "<group>";
 		};
-		A162DCCB206A4A2F00C053D1 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A162DCCD206A4A6000C053D1 /* Sparkle.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -142,10 +117,8 @@
 				A11E73F1206B228600FEE183 /* SwiftLint */,
 				A11E73EF206B1F0700FEE183 /* Determine Build Number */,
 				A139AF8F205F775A008680F4 /* Sources */,
-				A162DCCE206A578E00C053D1 /* Copy Frameworks */,
 				A139AF90205F775A008680F4 /* Frameworks */,
 				A139AF91205F775A008680F4 /* Resources */,
-				A111BF6A217768540027EFB3 /* Sign Bundled Frameworks */,
 				A11E73F0206B203C00FEE183 /* Reset Build Number */,
 			);
 			buildRules = (
@@ -153,6 +126,9 @@
 			dependencies = (
 			);
 			name = Netflix;
+			packageProductDependencies = (
+				A1310601259060E000548F12 /* Sparkle */,
+			);
 			productName = Netflix;
 			productReference = A139AF93205F775A008680F4 /* Netflix.app */;
 			productType = "com.apple.product-type.application";
@@ -191,6 +167,9 @@
 				Base,
 			);
 			mainGroup = A139AF8A205F775A008680F4;
+			packageReferences = (
+				A1310600259060E000548F12 /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			productRefGroup = A139AF94205F775A008680F4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -215,24 +194,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A111BF6A217768540027EFB3 /* Sign Bundled Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Sign Bundled Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "LOCATION=\"${BUILT_PRODUCTS_DIR}\"/\"${FRAMEWORKS_FOLDER_PATH}\"\n\n# By default, use the configured code signing identity for the project/target\nIDENTITY=\"${CODE_SIGN_IDENTITY}\"\nif [ \"$IDENTITY\" == \"\" ]\nthen\n# If a code signing identity is not specified, use ad hoc signing\nIDENTITY=\"-\"\nfi\ncodesign --verbose --force --deep -o runtime --sign \"$IDENTITY\" \"$LOCATION/Sparkle.framework/Versions/A/Resources/AutoUpdate.app\"\ncodesign --verbose --force -o runtime --sign \"$IDENTITY\" \"$LOCATION/Sparkle.framework/Versions/A\"\n";
-		};
 		A11E73EF206B1F0700FEE183 /* Determine Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,7 +206,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# The repo is a good way to track builds, since we'll reset this later\nsh \"update-version.sh\" --reflect-commits";
+			shellScript = "# The repo is a good way to track builds, since we'll reset this later\nsh \"update-version.sh\" --reflect-commits\n";
 		};
 		A11E73F0206B203C00FEE183 /* Reset Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -411,7 +372,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -426,7 +388,11 @@
 				DEVELOPMENT_TEAM = SGWXH8G2WP;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jellystyle.Netflix-wrapper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -444,7 +410,11 @@
 				DEVELOPMENT_TEAM = SGWXH8G2WP;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jellystyle.Netflix-wrapper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -473,6 +443,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A1310600259060E000548F12 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A1310601259060E000548F12 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1310600259060E000548F12 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A139AF8B205F775A008680F4 /* Project object */;
 }
