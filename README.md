@@ -25,7 +25,7 @@ brew install --cask jellybeansoup-netflix
 
 The [Icons](https://github.com/jellybeansoup/macos-netflix/tree/master/Icons) folder contains alternative icons that may be used with the app. After downloading, you can apply the icon of your choice by right clicking on the installed app in Finder, clicking Get Info, and dragging it into the icon well at the top of the window.
 
-![Screenshot displaying the Netflix interface](https://github.com/jellybeansoup/macos-netflix/blob/master/Resources/alternative-icons.gif)
+![Replacing the app icon](https://github.com/jellybeansoup/macos-netflix/blob/master/Resources/alternative-icons.gif)
 
 ## Legal
 
