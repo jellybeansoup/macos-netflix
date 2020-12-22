@@ -2,7 +2,7 @@
 
 A very simple proof-of-concept app for a `WKWebView` based app to allow viewing Netflix outside the browser on macOS. The goal is to somewhat allow a picture-in-picture style browsing and watching experience. There's a bunch of similar apps on the Mac App Store, but this one is mine, and the idea is to keep it pretty lightweight (no majorly additive features).
 
-![Screenshot displaying the Netflix interface](https://github.com/jellybeansoup/macos-netflix/blob/master/Resources/screenshot.png)
+![Screenshot displaying the Netflix interface](https://github.com/jellybeansoup/macos-netflix/blob/main/Resources/screenshot.png)
 
 ## Installation Instructions
 
@@ -23,13 +23,13 @@ brew install --cask jellybeansoup-netflix
 
 ## Alternative Icons
 
-The [Icons](https://github.com/jellybeansoup/macos-netflix/tree/master/Icons) folder contains alternative icons that may be used with the app. After downloading, you can apply the icon of your choice by right clicking on the installed app in Finder, clicking Get Info, and dragging it into the icon well at the top of the window.
+The [Icons](https://github.com/jellybeansoup/macos-netflix/tree/main/Icons) folder contains alternative icons that may be used with the app. After downloading, you can apply the icon of your choice by right clicking on the installed app in Finder, clicking Get Info, and dragging it into the icon well at the top of the window.
 
-![Replacing the app icon](https://github.com/jellybeansoup/macos-netflix/blob/master/Resources/alternative-icons.gif)
+![Replacing the app icon](https://github.com/jellybeansoup/macos-netflix/blob/main/Resources/alternative-icons.gif)
 
 ## Legal
 
-Copyright © 2020 Daniel Farrelly. Released under the [BSD license](https://github.com/jellybeansoup/macos-netflix/blob/master/LICENSE).
+Copyright © 2020 Daniel Farrelly. Released under the [BSD license](https://github.com/jellybeansoup/macos-netflix/blob/main/LICENSE).
 
 App icon template is from the [Bjango Templates repository](https://github.com/bjango/Bjango-Templates), which are released under the BSD License, and are copyright © Bjango and Marc Edwards. 
 
