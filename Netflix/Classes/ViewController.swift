@@ -123,6 +123,7 @@ class ViewController: NSViewController {
 			return
 		}
 
+		self.pipOverlayView.isHidden = false
 		pipStatus = .intermediate
 
 		webView.evaluateJavaScript("window.jellystyle.setControlsVisibility(false);", completionHandler: didEvaluateJavascript)
@@ -159,7 +160,6 @@ class ViewController: NSViewController {
 			self.pipStatus = .inPIP
 
 			DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250)) {
-				self.pipOverlayView.isHidden = false
 				self.pip.minSize = oldMinSize
 				self.pip.maxSize = oldMaxSize
 				self.windowController?.window?.miniaturize(self)
@@ -371,7 +371,6 @@ extension ViewController: PIPViewControllerDelegate {
 	private func preparePipClose() {
 		pipStatus = .intermediate
 		pip.replacementView = view
-		pipOverlayView.isHidden = true
 
 		NSApp.activate(ignoringOtherApps: true)
 
@@ -386,6 +385,7 @@ extension ViewController: PIPViewControllerDelegate {
 
 	private func pipClosed() {
 		addWebViewToView()
+		pipOverlayView.isHidden = true
 		pipStatus = .notInPIP
 		webView.isInPipMode = false
 	}
