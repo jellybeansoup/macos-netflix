@@ -15,7 +15,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
 	// MARK: Accessing various classes
 
 	private weak var defaultWindowController: WindowController? {
-		guard let window = NSApplication.shared.mainWindow else {
+			// When window is minituarized, NSApplication.shared.mainWindow is nil
+			guard let window = NSApplication.shared.mainWindow ?? NSApplication.shared.windows.first else {
 			return nil
 		}
 
@@ -93,6 +94,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
 
 	@IBAction func snapToCorners(_ sender: Any?) {
 		defaultWindowController?.toggleSnapToCorners(sender)
+	}
+
+	@IBAction func pictureInPicture(_ sender: Any?) {
+		defaultWindowController?.togglePictureInPicture(sender)
 	}
 
 	@IBAction func github(_ sender: Any?) {

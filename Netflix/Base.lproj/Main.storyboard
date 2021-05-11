@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -144,6 +144,12 @@
                                                 <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="dU3-MA-1Rq"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Enter Picture In Picture" keyEquivalent="p" id="y8W-ni-XGb">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="pictureInPicture:" target="Voe-Tx-rLC" id="IMT-zy-3Ac"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="QXn-5N-8v1"/>
                                         <menuItem title="Actual Size" keyEquivalent="0" id="Arb-0g-DGx" userLabel="Actual Size">
                                             <connections>
@@ -245,6 +251,7 @@
                 <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="Netflix" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Netflix" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" animationBehavior="default" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" managed="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -280,25 +287,56 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="yun-A8-yUA" customClass="ActivityIndicator" customModule="Netflix" customModuleProvider="target">
                                 <rect key="frame" x="223" y="126" width="34" height="18"/>
                             </customView>
+                            <visualEffectView hidden="YES" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="4TQ-NI-IHc">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <subviews>
+                                    <imageView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kku-yl-aCW">
+                                        <rect key="frame" x="197" y="101" width="87" height="68"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="playing-in-pip" id="QLf-M4-DMe"/>
+                                    </imageView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4UX-Av-SNG">
+                                        <rect key="frame" x="116" y="77" width="248" height="16"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="This video is playing in picture in picture" id="12P-wV-OST">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4UX-Av-SNG" firstAttribute="top" secondItem="Kku-yl-aCW" secondAttribute="bottom" constant="8" id="Ljz-9V-rb5"/>
+                                    <constraint firstItem="Kku-yl-aCW" firstAttribute="centerX" secondItem="4TQ-NI-IHc" secondAttribute="centerX" id="Y6F-S5-h7W"/>
+                                    <constraint firstItem="4UX-Av-SNG" firstAttribute="centerX" secondItem="4TQ-NI-IHc" secondAttribute="centerX" id="sOT-W2-IyO"/>
+                                    <constraint firstItem="Kku-yl-aCW" firstAttribute="centerY" secondItem="4TQ-NI-IHc" secondAttribute="centerY" id="wd4-9y-mKg"/>
+                                </constraints>
+                            </visualEffectView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" multiplier="0.07" id="25Q-W6-rYW"/>
                             <constraint firstItem="4kz-34-jds" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="3zo-fM-8f1"/>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="9QB-W7-hFq"/>
+                            <constraint firstAttribute="trailing" secondItem="4TQ-NI-IHc" secondAttribute="trailing" id="Bht-3q-P3n"/>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" multiplier="0.07" id="J9Z-PQ-JFX"/>
+                            <constraint firstItem="4TQ-NI-IHc" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Q9U-39-OxR"/>
                             <constraint firstItem="yun-A8-yUA" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="ZH4-mR-tut"/>
                             <constraint firstAttribute="trailing" secondItem="4kz-34-jds" secondAttribute="trailing" id="c4d-fj-zht"/>
+                            <constraint firstItem="4TQ-NI-IHc" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="qTF-OO-asd"/>
                             <constraint firstItem="4kz-34-jds" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="rhp-hA-UHa"/>
+                            <constraint firstAttribute="bottom" secondItem="4TQ-NI-IHc" secondAttribute="bottom" id="zDI-g6-6fu"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="yun-A8-yUA" id="eP2-ZE-EhL"/>
+                        <outlet property="pipOverlayView" destination="4TQ-NI-IHc" id="YxU-Hv-TvF"/>
                         <outlet property="titleView" destination="4kz-34-jds" id="tcw-4D-vTJ"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="90" y="670"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="playing-in-pip" width="87" height="68"/>
+    </resources>
 </document>

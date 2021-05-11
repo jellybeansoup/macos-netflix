@@ -141,6 +141,14 @@ class WindowController: NSWindowController, NSWindowDelegate {
 		self.snapToCorners = !self.snapToCorners
 	}
 
+	// MARK: Picture In Picture
+
+	@IBAction func togglePictureInPicture(_ sender: Any?) {
+		if let vc = self.contentViewController as? ViewController {
+			vc.togglePictureInPicture()
+		}
+	}
+
 	// MARK: NSResponder
 
 	private var isMoving = false
