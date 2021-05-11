@@ -18,7 +18,24 @@
 		A139AFA7205F7949008680F4 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AFA6205F7949008680F4 /* WindowController.swift */; };
 		A139AFA9205FCBFA008680F4 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AFA8205FCBFA008680F4 /* TitleView.swift */; };
 		A139AFAB205FD565008680F4 /* Customization.js in Resources */ = {isa = PBXBuildFile; fileRef = A139AFAA205FD565008680F4 /* Customization.js */; };
+		C09C23722649D0F700416DBD /* PIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09C23712649D0F700416DBD /* PIP.framework */; };
+		C09C23732649D0F700416DBD /* PIP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C09C23712649D0F700416DBD /* PIP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C09C23782649E95C00416DBD /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09C23772649E95C00416DBD /* WebView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C09C23742649D0F700416DBD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C09C23732649D0F700416DBD /* PIP.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Classes/ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -34,6 +51,9 @@
 		A139AFA6205F7949008680F4 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WindowController.swift; path = Classes/WindowController.swift; sourceTree = "<group>"; };
 		A139AFA8205FCBFA008680F4 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TitleView.swift; path = Classes/TitleView.swift; sourceTree = "<group>"; };
 		A139AFAA205FD565008680F4 /* Customization.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Customization.js; sourceTree = "<group>"; };
+		C09C236F2649C2C500416DBD /* PIP_BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PIP_BridgingHeader.h; sourceTree = "<group>"; };
+		C09C23712649D0F700416DBD /* PIP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PIP.framework; path = ../../../../../System/Library/PrivateFrameworks/PIP.framework; sourceTree = "<group>"; };
+		C09C23772649E95C00416DBD /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C09C23722649D0F700416DBD /* PIP.framework in Frameworks */,
 				A1310602259060E000548F12 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,6 +75,7 @@
 				A11E73F2206B586200FEE183 /* Credits.rtf */,
 				A139AFAA205FD565008680F4 /* Customization.js */,
 				A139AF9F205F775A008680F4 /* Info.plist */,
+				C09C236F2649C2C500416DBD /* PIP_BridgingHeader.h */,
 				A139AFA0205F775A008680F4 /* Netflix.entitlements */,
 			);
 			name = "Supporting Files";
@@ -72,6 +94,7 @@
 			children = (
 				A139AFA8205FCBFA008680F4 /* TitleView.swift */,
 				A10B13222069DC6F00A5CB98 /* ActivityIndicator.swift */,
+				C09C23772649E95C00416DBD /* WebView.swift */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -81,6 +104,7 @@
 			children = (
 				A139AF95205F775A008680F4 /* Netflix */,
 				A139AF94205F775A008680F4 /* Products */,
+				C09C23702649D0F700416DBD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +131,14 @@
 			name = Netflix;
 			sourceTree = "<group>";
 		};
+		C09C23702649D0F700416DBD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C09C23712649D0F700416DBD /* PIP.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -120,6 +152,7 @@
 				A139AF90205F775A008680F4 /* Frameworks */,
 				A139AF91205F775A008680F4 /* Resources */,
 				A11E73F0206B203C00FEE183 /* Reset Build Number */,
+				C09C23742649D0F700416DBD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -249,6 +282,7 @@
 				A139AFA7205F7949008680F4 /* WindowController.swift in Sources */,
 				A139AF97205F775A008680F4 /* AppDelegate.swift in Sources */,
 				A139AFA9205FCBFA008680F4 /* TitleView.swift in Sources */,
+				C09C23782649E95C00416DBD /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,7 +431,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jellystyle.Netflix-wrapper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = PIP_BridgingHeader.h;
 				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
 			};
 			name = Debug;
 		};
@@ -419,7 +458,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jellystyle.Netflix-wrapper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = PIP_BridgingHeader.h;
 				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
 			};
 			name = Release;
 		};

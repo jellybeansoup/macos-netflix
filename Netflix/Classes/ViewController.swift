@@ -3,42 +3,63 @@ import WebKit
 
 class ViewController: NSViewController {
 
+	enum PlaybackStatus: String {
+		case none = "none"
+		case paused = "paused"
+		case playing = "playing"
+	}
+
+	enum PIPStatus {
+		case notInPIP
+		case inPIP
+		case intermediate
+	}
+
 	private weak var windowController: WindowController? {
 		return view.window?.windowController as? WindowController
 	}
 
-	var webView: WKWebView!
+	var webView: WebView!
 
 	@IBOutlet weak var titleView: TitleView?
 
 	@IBOutlet weak var activityIndicator: ActivityIndicator?
 
+	@IBOutlet weak var pipOverlayView: NSVisualEffectView!
+
 	private var currentNavigation: WKNavigation?
+
+	private var pipStatus = PIPStatus.notInPIP
+	private var playbackStatus: PlaybackStatus = .none
+
+	lazy var pip: PIPViewController = {
+		let pip = PIPViewController()
+		pip.delegate = self
+		return pip
+	}()
+
+	var pipViewVC: NSViewController!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		view.layer?.backgroundColor = NSColor(deviceRed: 0.078, green: 0.078, blue: 0.078, alpha: 1).cgColor
+		pipOverlayView.isHidden = true
 
 		titleView?.delegate = self
 
 		let configuration = WKWebViewConfiguration()
 		configuration.userContentController.add(self, name: "jellystyle")
 		configuration.userContentController.add(self, name: "requestFullscreen")
+		configuration.userContentController.add(self, name: "playback")
+		configuration.preferences.setValue(true, forKey: "developerExtrasEnabled")
 
-		webView = WKWebView(frame: view.frame, configuration: configuration)
+		webView = WebView(frame: view.frame, configuration: configuration)
 		webView.isHidden = true
 		webView.navigationDelegate = self
 		webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6"
 
-		webView.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(webView, positioned: .below, relativeTo: titleView)
-		view.addConstraints([
-			webView.topAnchor.constraint(equalTo: view.topAnchor),
-			webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-			webView.leftAnchor.constraint(equalTo: view.leftAnchor),
-			webView.rightAnchor.constraint(equalTo: view.rightAnchor),
-		])
+		addWebViewToView()
 
 //		let dataTypes = WKWebsiteDataStore.allWebsiteDataTypes()
 //		webView.configuration.websiteDataStore.removeData(ofTypes: dataTypes, modifiedSince: .distantPast, completionHandler: {})
@@ -70,12 +91,103 @@ class ViewController: NSViewController {
 
 	internal fileprivate(set) var canSearch = false
 
+	private func addWebViewToView() {
+		webView.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(webView, positioned: .below, relativeTo: titleView)
+		view.addConstraints([
+			webView.topAnchor.constraint(equalTo: view.topAnchor),
+			webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			webView.leftAnchor.constraint(equalTo: view.leftAnchor),
+			webView.rightAnchor.constraint(equalTo: view.rightAnchor),
+		])
+	}
+
+	func resume() {
+		webView.evaluateJavaScript("window.jellystyle.resume();", completionHandler: didEvaluateJavascript)
+	}
+
+	func pause() {
+		webView.evaluateJavaScript("window.jellystyle.pause();", completionHandler: didEvaluateJavascript)
+	}
+
 	@IBAction func search(_ sender: Any?) {
 		guard let webView = webView, !webView.isHidden else {
 			return
 		}
 
 		webView.evaluateJavaScript("window.jellystyle.focusSearch();", completionHandler: didEvaluateJavascript)
+	}
+
+	func enterPictureInPicture() {
+		guard playbackStatus != .none, pipStatus == .notInPIP, let webView = webView, !webView.isHidden else {
+			return
+		}
+
+		pipStatus = .intermediate
+
+		webView.evaluateJavaScript("window.jellystyle.setControlsVisibility(false);", completionHandler: didEvaluateJavascript)
+
+		// wait for transition animation end
+		DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250)) {
+			let oldMinSize = self.pip.minSize
+			let oldMaxSize = self.pip.maxSize
+
+			self.pipViewVC = NSViewController()
+			self.pipViewVC.view = webView
+			self.pip.title = webView.title
+
+			self.pip.minSize = webView.frame.size
+			self.pip.maxSize = webView.frame.size
+
+			webView.isInPipMode = true
+
+			self.pip.presentAsPicture(inPicture: self.pipViewVC)
+
+			webView.autoresizingMask = [.width, .height]
+			webView.translatesAutoresizingMaskIntoConstraints = true
+			webView.updateConstraints()
+
+			if let view = webView.superview {
+				view.addConstraints([
+					webView.topAnchor.constraint(equalTo: view.topAnchor),
+					webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+					webView.leftAnchor.constraint(equalTo: view.leftAnchor),
+					webView.rightAnchor.constraint(equalTo: view.rightAnchor),
+				])
+			}
+
+			self.pipStatus = .inPIP
+
+			DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250)) {
+				self.pipOverlayView.isHidden = false
+				self.pip.minSize = oldMinSize
+				self.pip.maxSize = oldMaxSize
+				self.windowController?.window?.miniaturize(self)
+			}
+		}
+	}
+
+	func exitPictureInPicture() {
+		guard pipStatus == .inPIP else {
+			return
+		}
+
+		if pipShouldClose(pip) {
+			pip.dismiss(self.pipViewVC!)
+		}
+	}
+
+	func togglePictureInPicture() {
+		switch pipStatus {
+		case .notInPIP:
+			enterPictureInPicture()
+
+		case .inPIP:
+			exitPictureInPicture()
+
+		case .intermediate:
+			break
+		}
 	}
 
 }
@@ -144,7 +256,13 @@ extension ViewController: WindowControllerFullscreenDelegate {
 extension ViewController: WKScriptMessageHandler {
 
 	func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-		if message.name == "jellystyle", let dictionary = message.body as? [String: Any] {
+		switch message.name {
+		case "jellystyle":
+			guard let dictionary = message.body as? [String: Any] else {
+				print(message.name, message.body)
+				return
+			}
+
 			displayingControls = (dictionary["controlsVisible"] as? NSNumber)?.boolValue ?? false
 			displayingOverlay = (dictionary["overlayVisible"] as? NSNumber)?.boolValue ?? false
 			displayingHeader = (dictionary["hasHeader"] as? NSNumber)?.boolValue ?? false
@@ -153,21 +271,54 @@ extension ViewController: WKScriptMessageHandler {
 			if let size = dictionary["videoSize"] as? [NSNumber] {
 				let aspectRatio = NSSize(width: size[0].doubleValue, height: size[1].doubleValue)
 				windowController?.update(aspectRatio: aspectRatio)
+				pip.aspectRatio = aspectRatio
 			}
 			else {
 				windowController?.update(aspectRatio: nil)
 			}
 
 			titleView?.shouldHideWhenInactive = !(displayingControls || displayingHeader)
-		}
-		else if message.name == "requestFullscreen", let boolValue = (message.body as? NSNumber)?.boolValue, let window = view.window {
-			guard window.styleMask.contains(.fullScreen) != boolValue else {
+
+		case "requestFullscreen":
+			guard
+				let boolValue = (message.body as? NSNumber)?.boolValue,
+				let window = view.window,
+				window.styleMask.contains(.fullScreen) != boolValue
+			else {
+				print(message.name, message.body)
 				return
 			}
 
 			window.toggleFullScreen(self)
-		}
-		else {
+
+		case "playback":
+			guard
+				let dictionary = message.body as? [String: Any],
+				let status = PlaybackStatus(rawValue: String((dictionary["status"] as? NSString) ?? "none"))
+			else {
+				print(message.name, message.body)
+				return
+			}
+
+			guard status != playbackStatus else {
+				return
+			}
+
+			switch (playbackStatus, status) {
+			case (_, .none):
+				pip.playing = false
+				exitPictureInPicture()
+
+			case (_, .paused):
+				pip.playing = false
+
+			case (_, .playing):
+				pip.playing = true
+			}
+
+			playbackStatus = status
+
+		default:
 			print(message.name, message.body)
 		}
 	}
@@ -211,6 +362,57 @@ extension ViewController: WKNavigationDelegate {
 		else if let response = response {
 			print(response)
 		}
+	}
+
+}
+
+extension ViewController: PIPViewControllerDelegate {
+
+	private func preparePipClose() {
+		pipStatus = .intermediate
+		pip.replacementView = view
+		pipOverlayView.isHidden = true
+
+		NSApp.activate(ignoringOtherApps: true)
+
+		if let window = windowController?.window {
+			window.deminiaturize(pip)
+
+			var frame = window.frame
+			frame.size = webView.frame.size
+			window.setFrame(frame, display: true, animate: true)
+		}
+	}
+
+	private func pipClosed() {
+		addWebViewToView()
+		pipStatus = .notInPIP
+		webView.isInPipMode = false
+	}
+
+	public func pipShouldClose(_ pip: PIPViewController) -> Bool {
+		preparePipClose()
+		return true
+	}
+
+	public func pipWillClose(_ pip: PIPViewController) {
+		preparePipClose()
+	}
+
+	public func pipDidClose(_ pip: PIPViewController) {
+		pipClosed()
+	}
+
+	public func pipActionPlay(_ pip: PIPViewController) {
+		resume()
+	}
+
+	public func pipActionPause(_ pip: PIPViewController) {
+		pause()
+	}
+
+	public func pipActionStop(_ pip: PIPViewController) {
+		pause()
 	}
 
 }
