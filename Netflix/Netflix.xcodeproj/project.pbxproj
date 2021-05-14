@@ -18,6 +18,7 @@
 		A139AFA7205F7949008680F4 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AFA6205F7949008680F4 /* WindowController.swift */; };
 		A139AFA9205FCBFA008680F4 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139AFA8205FCBFA008680F4 /* TitleView.swift */; };
 		A139AFAB205FD565008680F4 /* Customization.js in Resources */ = {isa = PBXBuildFile; fileRef = A139AFAA205FD565008680F4 /* Customization.js */; };
+		C083408E264EF45D00938BC4 /* PictureInPictureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C083408D264EF45D00938BC4 /* PictureInPictureDelegate.swift */; };
 		C09C23722649D0F700416DBD /* PIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09C23712649D0F700416DBD /* PIP.framework */; };
 		C09C23732649D0F700416DBD /* PIP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C09C23712649D0F700416DBD /* PIP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C09C23782649E95C00416DBD /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09C23772649E95C00416DBD /* WebView.swift */; };
@@ -51,8 +52,9 @@
 		A139AFA6205F7949008680F4 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WindowController.swift; path = Classes/WindowController.swift; sourceTree = "<group>"; };
 		A139AFA8205FCBFA008680F4 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TitleView.swift; path = Classes/TitleView.swift; sourceTree = "<group>"; };
 		A139AFAA205FD565008680F4 /* Customization.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Customization.js; sourceTree = "<group>"; };
+		C083408D264EF45D00938BC4 /* PictureInPictureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureInPictureDelegate.swift; sourceTree = "<group>"; };
 		C09C236F2649C2C500416DBD /* PIP_BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PIP_BridgingHeader.h; sourceTree = "<group>"; };
-		C09C23712649D0F700416DBD /* PIP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PIP.framework; path = ../../../../../System/Library/PrivateFrameworks/PIP.framework; sourceTree = "<group>"; };
+		C09C23712649D0F700416DBD /* PIP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PIP.framework; path = /System/Library/PrivateFrameworks/PIP.framework; sourceTree = "<group>"; };
 		C09C23772649E95C00416DBD /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,7 @@
 				C09C23702649D0F700416DBD /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		A139AF94205F775A008680F4 /* Products */ = {
 			isa = PBXGroup;
@@ -123,6 +126,7 @@
 				A139AF96205F775A008680F4 /* AppDelegate.swift */,
 				A139AF98205F775A008680F4 /* ViewController.swift */,
 				A139AFA6205F7949008680F4 /* WindowController.swift */,
+				C083408D264EF45D00938BC4 /* PictureInPictureDelegate.swift */,
 				A11E73F7206BA1B900FEE183 /* Custom Views */,
 				A11E73F6206BA14F00FEE183 /* Class Extensions */,
 				A139AF9A205F775A008680F4 /* Assets.xcassets */,
@@ -282,6 +286,7 @@
 				A139AFA7205F7949008680F4 /* WindowController.swift in Sources */,
 				A139AF97205F775A008680F4 /* AppDelegate.swift in Sources */,
 				A139AFA9205FCBFA008680F4 /* TitleView.swift in Sources */,
+				C083408E264EF45D00938BC4 /* PictureInPictureDelegate.swift in Sources */,
 				C09C23782649E95C00416DBD /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

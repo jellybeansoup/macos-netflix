@@ -40,6 +40,8 @@ class ViewController: NSViewController {
 
 	var pipViewVC: NSViewController!
 
+	weak var pipDelegate: PictureInPictureDelegate?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -123,7 +125,8 @@ class ViewController: NSViewController {
 			return
 		}
 
-		self.pipOverlayView.isHidden = false
+		pipDelegate?.willEnterPictureInPicture(self)
+		pipOverlayView.isHidden = false
 		pipStatus = .intermediate
 
 		webView.evaluateJavaScript("window.jellystyle.setControlsVisibility(false);", completionHandler: didEvaluateJavascript)
@@ -158,6 +161,7 @@ class ViewController: NSViewController {
 			}
 
 			self.pipStatus = .inPIP
+			self.pipDelegate?.didEnterPictureInPicture(self)
 
 			DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250)) {
 				self.pip.minSize = oldMinSize
@@ -369,6 +373,7 @@ extension ViewController: WKNavigationDelegate {
 extension ViewController: PIPViewControllerDelegate {
 
 	private func preparePipClose() {
+		pipDelegate?.willExitPictureInPicture(self)
 		pipStatus = .intermediate
 		pip.replacementView = view
 
@@ -388,6 +393,7 @@ extension ViewController: PIPViewControllerDelegate {
 		pipOverlayView.isHidden = true
 		pipStatus = .notInPIP
 		webView.isInPipMode = false
+		pipDelegate?.didExitPictureInPicture(self)
 	}
 
 	public func pipShouldClose(_ pip: PIPViewController) -> Bool {

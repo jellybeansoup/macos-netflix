@@ -2,11 +2,15 @@ import Cocoa
 import WebKit
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, PictureInPictureDelegate {
 
 	static weak var shared: AppDelegate? = {
 		return NSApplication.shared.delegate as? AppDelegate
 	}()
+
+	func applicationDidFinishLaunching(_ notification: Notification) {
+		self.defaultViewController?.pipDelegate = self
+	}
 
 	func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
 		return true
@@ -15,8 +19,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
 	// MARK: Accessing various classes
 
 	private weak var defaultWindowController: WindowController? {
-			// When window is minituarized, NSApplication.shared.mainWindow is nil
-			guard let window = NSApplication.shared.mainWindow ?? NSApplication.shared.windows.first else {
+		// When window is minituarized, NSApplication.shared.mainWindow is nil
+		guard let window = NSApplication.shared.mainWindow ?? NSApplication.shared.windows.first else {
 			return nil
 		}
 
@@ -28,11 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
 	}
 
 	private weak var defaultViewController: ViewController? {
-		guard let window = NSApplication.shared.mainWindow else {
-			return nil
-		}
-
-		guard let viewController = window.contentViewController as? ViewController else {
+		guard let viewController = defaultWindowController?.contentViewController as? ViewController else {
 			return nil
 		}
 
@@ -46,6 +46,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
 	@IBOutlet weak var keepInFrontMenuItem: NSMenuItem?
 
 	@IBOutlet weak var snapToCornersMenuItem: NSMenuItem?
+
+	@IBOutlet weak var pictureInPictureMenuItem: NSMenuItem?
 
 	func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
 		if let searchMenuItem = searchMenuItem, menuItem === searchMenuItem {
@@ -114,6 +116,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
 		}
 
 		NSWorkspace.shared.open(url)
+	}
+
+	// MARK: Picture in picture delegate
+
+	func willEnterPictureInPicture(_ sender: Any?) {
+		//
+	}
+
+	func didEnterPictureInPicture(_ sender: Any?) {
+		pictureInPictureMenuItem?.title = NSLocalizedString("Exit Picture In Picture", comment: "Exit Picture In Picture")
+	}
+
+	func willExitPictureInPicture(_ sender: Any?) {
+		//
+	}
+
+	func didExitPictureInPicture(_ sender: Any?) {
+		pictureInPictureMenuItem?.title = NSLocalizedString("Enter Picture In Picture", comment: "Enter Picture In Picture")
 	}
 
 }
