@@ -235,6 +235,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Netflix" customModuleProvider="target">
                     <connections>
                         <outlet property="keepInFrontMenuItem" destination="cHD-8v-3P0" id="KXX-pL-hst"/>
+                        <outlet property="pictureInPictureMenuItem" destination="y8W-ni-XGb" id="fLw-2K-OFd"/>
                         <outlet property="searchMenuItem" destination="Xz5-n4-O0W" id="uiP-kf-K9n"/>
                         <outlet property="snapToCornersMenuItem" destination="syH-6G-4y0" id="gve-L1-uLn"/>
                     </connections>
